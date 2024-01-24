@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_pro/doctorinfo.dart';
+
 
 class MyLogin extends StatefulWidget {
   const MyLogin({super.key});
@@ -73,7 +75,9 @@ class _MyLoginState extends State<MyLogin> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+
+                        },
                         child: Text(
                           'Sign In',
                           style: TextStyle(
@@ -87,7 +91,12 @@ class _MyLoginState extends State<MyLogin> {
                           backgroundColor: Color(0xff4c505b),
                           child: IconButton(
                               color: Colors.white,
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => MyDoctor()),
+                                );
+                              },
                               icon: Icon(Icons.arrow_forward)))
                     ],
                   ),
@@ -110,7 +119,9 @@ class _MyLoginState extends State<MyLogin> {
                             ),
                           )),
                       InkWell(
-                          onLongPress: () {},
+                          onTap: () {
+                            Navigator.pushNamed(context, 'forgotpassword');
+                          },
                           child: Text(
                             'forgot password',
                             style: TextStyle(

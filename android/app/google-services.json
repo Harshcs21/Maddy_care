@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "360405300948",
+    "project_id": "meddy-care-24adc",
+    "storage_bucket": "meddy-care-24adc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:360405300948:android:b4c20b846dd257ae402d41",
+        "android_client_info": {
+          "package_name": "com.example.flutter_pro"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCuDh1lKwCoQNZ6LwxXzC7aiYwc-a4PoT0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
