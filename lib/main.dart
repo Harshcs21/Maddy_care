@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_pro/doctorinfo.dart';
-import 'package:flutter_pro/forgotpassword.dart';
+import 'doctorinfo.dart';
+import 'forgotpassword.dart';
 import 'start.dart'; // Import the file where MyStart is defined
-import 'package:flutter_pro/login.dart';
-import 'package:flutter_pro/register.dart';
+import 'login.dart';
+import 'register.dart';
 
 void main() {
   runApp(MaterialApp(
