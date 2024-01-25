@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_pro/doctorinfo.dart';
+import 'package:flutter_pro/userappointment.dart';
 
 
 class MyLogin extends StatefulWidget {
@@ -94,7 +95,7 @@ class _MyLoginState extends State<MyLogin> {
                               onPressed: () {
                                 Navigator.push(
                                   context,
-                                  MaterialPageRoute(builder: (context) => MyDoctor()),
+                                  MaterialPageRoute(builder: (context) => UserAppointment()),
                                 );
                               },
                               icon: Icon(Icons.arrow_forward)))
