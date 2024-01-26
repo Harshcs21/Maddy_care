@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-<<<<<<< HEAD
+
 import 'package:flutter_pro/newappointment.dart';
-=======
->>>>>>> origin/master
+
 
 import 'myappointment.dart';
 
@@ -31,7 +30,7 @@ class _UserAppointmentState extends State<UserAppointment> {
                     )
                   ),
                 ),
-<<<<<<< HEAD
+
                 InkWell(
                   onTap: () {
                     Navigator.push(
@@ -54,23 +53,10 @@ class _UserAppointmentState extends State<UserAppointment> {
                       color: Colors.white
                     ),),
                   ),
-=======
-                Container(
-                  padding: EdgeInsets.all(10),
-                  alignment: Alignment.center,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: Colors.green,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: Text("New Appointment",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
-                    color: Colors.white
-                  ),),
->>>>>>> origin/master
                 ),
+
+
+
                 SizedBox(height: 20),
                 InkWell(
                   onTap: () {

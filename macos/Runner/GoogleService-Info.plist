@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyALv30BQ6nZiVMr-s1L1CtZcFaAyNfEIYk</string>
+	<key>GCM_SENDER_ID</key>
+	<string>360405300948</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.flutterPro.RunnerTests</string>
+	<key>PROJECT_ID</key>
+	<string>meddy-care-24adc</string>
+	<key>STORAGE_BUCKET</key>
+	<string>meddy-care-24adc.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:360405300948:ios:6f754f863ecb485b402d41</string>
+</dict>
+</plist>

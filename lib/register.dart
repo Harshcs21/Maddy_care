@@ -1,6 +1,13 @@
+// import 'dart:js_util';
+
+import 'dart:math';
+
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_pro/doctorinfo.dart';
 import 'package:flutter_pro/login.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
 
 class MyRegister extends StatefulWidget {
   const MyRegister({Key? key}) : super(key: key);
@@ -10,6 +17,8 @@ class MyRegister extends StatefulWidget {
 }
 
 class _MyRegisterState extends State<MyRegister> {
+  TextEditingController nameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
   TextEditingController _confirmPasswordController = TextEditingController();
 
@@ -48,6 +57,7 @@ class _MyRegisterState extends State<MyRegister> {
                   child: Column(
                     children: [
                       TextField(
+                        controller: nameController,
                         decoration: InputDecoration(
                           fillColor: Colors.grey.shade100,
                           filled: true,
@@ -59,6 +69,7 @@ class _MyRegisterState extends State<MyRegister> {
                       ),
                       SizedBox(height: 20),
                       TextField(
+                        controller: emailController,
                         decoration: InputDecoration(
                           fillColor: Colors.grey.shade100,
                           filled: true,
@@ -121,37 +132,51 @@ class _MyRegisterState extends State<MyRegister> {
                             backgroundColor: Colors.black,
                             child: IconButton(
                               color: Colors.white,
-                              onPressed: () {
+                              onPressed:  () async {
+                                var name = nameController.text.trim();
+                                var email = emailController.text.trim();
+                                var password = _passwordController.text.trim();
+                                var confirmpassword = _confirmPasswordController.text.trim();
+
+
+                                // await FirebaseAuth.instance.createUserWithEmailAndPassword(
+                                //   email: email,
+                                //   password: password
+                                // ).then((value) => {
+                                //   log("user created"),
+                                // });
+
+
                                 // Check if passwords match
-                                if (_password == _confirmPassword) {
-                                  // Passwords match, perform registration
-                                  // This is just an example navigation
-                                  Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => MyDoctor(),
-                                    ),
-                                  );
-                                } else {
-                                  // Passwords don't match, show an error or alert
-                                  showDialog(
-                                    context: context,
-                                    builder: (context) {
-                                      return AlertDialog(
-                                        title: Text('Error'),
-                                        content: Text('Passwords do not match'),
-                                        actions: [
-                                          TextButton(
-                                            onPressed: () {
-                                              Navigator.pop(context);
-                                            },
-                                            child: Text('OK'),
-                                          ),
-                                        ],
-                                      );
-                                    },
-                                  );
-                                }
+                                // if (_password == _confirmPassword) {
+                                //   // Passwords match, perform registration
+                                //   // This is just an example navigation
+                                //   Navigator.pushReplacement(
+                                //     context,
+                                //     MaterialPageRoute(
+                                //       builder: (context) => MyDoctor(),
+                                //     ),
+                                //   );
+                                // } else {
+                                //   // Passwords don't match, show an error or alert
+                                //   showDialog(
+                                //     context: context,
+                                //     builder: (context) {
+                                //       return AlertDialog(
+                                //         title: Text('Error'),
+                                //         content: Text('Passwords do not match'),
+                                //         actions: [
+                                //           TextButton(
+                                //             onPressed: () {
+                                //               Navigator.pop(context);
+                                //             },
+                                //             child: Text('OK'),
+                                //           ),
+                                //         ],
+                                //       );
+                                //     },
+                                //   );
+                                // }
                               },
                               icon: Icon(Icons.arrow_forward),
                             ),
@@ -186,4 +211,7 @@ class _MyRegisterState extends State<MyRegister> {
       ),
     );
   }
+}
+
+class FirebaseAuth {
 }
