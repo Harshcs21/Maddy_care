@@ -2,12 +2,12 @@
 
 import 'dart:math';
 
-// import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_pro/doctorinfo.dart';
+import 'package:flutter_pro/firebase_auth_service.dart';
 import 'package:flutter_pro/login.dart';
 // import 'package:firebase_auth/firebase_auth.dart';
-
 
 class MyRegister extends StatefulWidget {
   const MyRegister({Key? key}) : super(key: key);
@@ -17,13 +17,30 @@ class MyRegister extends StatefulWidget {
 }
 
 class _MyRegisterState extends State<MyRegister> {
-  TextEditingController nameController = TextEditingController();
-  TextEditingController emailController = TextEditingController();
+  TextEditingController _nameController = TextEditingController();
+  TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
   TextEditingController _confirmPasswordController = TextEditingController();
 
   String _password = '';
   String _confirmPassword = '';
+
+  // void dispose() {
+  //   _nameController.dispose();
+  //   _emailController.dispose();
+  //   _passwordController.dispose();
+  //   _confirmPasswordController.dispose();
+  // }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Firebase.initializeApp().whenComplete(() {
+      print("completed");
+      setState(() {});
+  });}
+
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +74,7 @@ class _MyRegisterState extends State<MyRegister> {
                   child: Column(
                     children: [
                       TextField(
-                        controller: nameController,
+                        controller: _nameController,
                         decoration: InputDecoration(
                           fillColor: Colors.grey.shade100,
                           filled: true,
@@ -69,7 +86,7 @@ class _MyRegisterState extends State<MyRegister> {
                       ),
                       SizedBox(height: 20),
                       TextField(
-                        controller: emailController,
+                        controller: _emailController,
                         decoration: InputDecoration(
                           fillColor: Colors.grey.shade100,
                           filled: true,
@@ -132,12 +149,12 @@ class _MyRegisterState extends State<MyRegister> {
                             backgroundColor: Colors.black,
                             child: IconButton(
                               color: Colors.white,
-                              onPressed:  () async {
-                                var name = nameController.text.trim();
-                                var email = emailController.text.trim();
-                                var password = _passwordController.text.trim();
-                                var confirmpassword = _confirmPasswordController.text.trim();
-
+                              onPressed: () async {
+                                var name = _nameController.text;
+                                var email = _emailController.text;
+                                var password = _passwordController.text;
+                                var confirmPassword =
+                                    _confirmPasswordController.text;
 
                                 // await FirebaseAuth.instance.createUserWithEmailAndPassword(
                                 //   email: email,
@@ -146,11 +163,19 @@ class _MyRegisterState extends State<MyRegister> {
                                 //   log("user created"),
                                 // });
 
-
                                 // Check if passwords match
                                 if (_password == _confirmPassword) {
                                   // Passwords match, perform registration
                                   // This is just an example navigation
+
+                                  String res = await AuthMethods().signUpUser(
+                                      email: email,
+                                      username: name,
+                                      password: password,
+                                      confirmPassword: confirmPassword);
+
+                                  print("The result is: " + res);
+
                                   Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
@@ -213,5 +238,4 @@ class _MyRegisterState extends State<MyRegister> {
   }
 }
 
-class FirebaseAuth {
-}
+class FirebaseAuth {}

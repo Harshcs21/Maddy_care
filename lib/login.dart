@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_pro/doctorinfo.dart';
+import 'package:flutter_pro/firebase_auth_service.dart';
 import 'package:flutter_pro/userappointment.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 
 class MyLogin extends StatefulWidget {
@@ -11,6 +13,45 @@ class MyLogin extends StatefulWidget {
 }
 
 class _MyLoginState extends State<MyLogin> {
+
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+
+
+  void loginUser() async {
+
+    String email = _emailController.text.trim();
+    String password = _passwordController.text.trim();
+
+    // String res = "Success";
+
+    String res = await AuthMethods().loginUser(email: email, password: password);
+
+    if(res == "Success")
+      {
+        Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => UserAppointment()),
+              );
+      }
+    else
+      {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+                content: Text(res))
+          );
+      }
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Firebase.initializeApp().whenComplete(() {
+      print("completed");
+      setState(() {});
+    });}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -92,12 +133,13 @@ class _MyLoginState extends State<MyLogin> {
                           backgroundColor: Color(0xff4c505b),
                           child: IconButton(
                               color: Colors.white,
-                              onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(builder: (context) => UserAppointment()),
-                                );
-                              },
+                              onPressed: loginUser,
+                              // onPressed: () {
+                              //   Navigator.push(
+                              //     context,
+                              //     MaterialPageRoute(builder: (context) => UserAppointment()),
+                              //   );
+                              // },
                               icon: Icon(Icons.arrow_forward)))
                     ],
                   ),
