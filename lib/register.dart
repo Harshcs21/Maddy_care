@@ -2,11 +2,11 @@
 
 import 'dart:math';
 
-import 'package:firebase_core/firebase_core.dart';
+// import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_pro/doctorinfo.dart';
 import 'package:flutter_pro/login.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
 
 
 class MyRegister extends StatefulWidget {
@@ -148,35 +148,35 @@ class _MyRegisterState extends State<MyRegister> {
 
 
                                 // Check if passwords match
-                                // if (_password == _confirmPassword) {
-                                //   // Passwords match, perform registration
-                                //   // This is just an example navigation
-                                //   Navigator.pushReplacement(
-                                //     context,
-                                //     MaterialPageRoute(
-                                //       builder: (context) => MyDoctor(),
-                                //     ),
-                                //   );
-                                // } else {
-                                //   // Passwords don't match, show an error or alert
-                                //   showDialog(
-                                //     context: context,
-                                //     builder: (context) {
-                                //       return AlertDialog(
-                                //         title: Text('Error'),
-                                //         content: Text('Passwords do not match'),
-                                //         actions: [
-                                //           TextButton(
-                                //             onPressed: () {
-                                //               Navigator.pop(context);
-                                //             },
-                                //             child: Text('OK'),
-                                //           ),
-                                //         ],
-                                //       );
-                                //     },
-                                //   );
-                                // }
+                                if (_password == _confirmPassword) {
+                                  // Passwords match, perform registration
+                                  // This is just an example navigation
+                                  Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => MyDoctor(),
+                                    ),
+                                  );
+                                } else {
+                                  // Passwords don't match, show an error or alert
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) {
+                                      return AlertDialog(
+                                        title: Text('Error'),
+                                        content: Text('Passwords do not match'),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                            },
+                                            child: Text('OK'),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
+                                }
                               },
                               icon: Icon(Icons.arrow_forward),
                             ),

@@ -9,6 +9,14 @@ class PatientDetails extends StatefulWidget {
 }
 
 class _PatientDetailsState extends State<PatientDetails> {
+
+  TextEditingController _patientName = TextEditingController();
+  TextEditingController _patientAge = TextEditingController();
+  TextEditingController _mobile = TextEditingController();
+  TextEditingController _diseaseSymptoms = TextEditingController();
+
+
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -28,6 +36,7 @@ class _PatientDetailsState extends State<PatientDetails> {
                   style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
                 ),
                 TextFormField(
+                  controller: _patientName,
                   decoration: InputDecoration(
                     hintText: 'Enter patient name',
                   ),
@@ -38,6 +47,7 @@ class _PatientDetailsState extends State<PatientDetails> {
                   style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
                 ),
                 TextFormField(
+                  controller: _patientAge,
                   decoration: InputDecoration(
                     hintText: 'Enter patient age',
                   ),
@@ -48,6 +58,7 @@ class _PatientDetailsState extends State<PatientDetails> {
                   style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
                 ),
                 TextFormField(
+                  controller: _mobile,
                   decoration: InputDecoration(
                     hintText: 'Enter mobile number',
                   ),
@@ -58,6 +69,7 @@ class _PatientDetailsState extends State<PatientDetails> {
                   style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
                 ),
                 TextFormField(
+                  controller: _diseaseSymptoms,
                   maxLines: 3,
                   decoration: InputDecoration(
                     hintText: 'Enter disease symptoms',

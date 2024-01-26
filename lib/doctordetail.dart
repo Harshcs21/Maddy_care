@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_pro/cancelappointment.dart';
 import 'package:flutter_pro/confirmappointment.dart';
 
 class DoctorDetails extends StatefulWidget {
@@ -22,14 +23,15 @@ class _DoctorDetailsState extends State<DoctorDetails> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(50),
-                    child: Image.asset(
-                      'assets/splash.jpg', // Replace with your image path
-                      width: 50,
-                      height: 50,
-                      fit: BoxFit.cover,
+                  Container(
+                    height: 100,
+                    width: 100,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage("assets/splash.png"),
+                      )
                     ),
                   ),
                   SizedBox(width: 20),
@@ -66,11 +68,19 @@ class _DoctorDetailsState extends State<DoctorDetails> {
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 10),
-              Text(
-                'Lorem ipsum dolor sit amet, consectetur adipiscing elit. '
-                    'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. '
-                    'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-                style: TextStyle(fontSize: 16),
+              Container(
+                padding: EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  color: Colors.grey,
+                  borderRadius: BorderRadius.only(topLeft: Radius.circular(40), bottomRight: Radius.circular(40)),
+                ),
+                child: Text(
+                  textAlign: TextAlign.center,
+                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. '
+                      'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. '
+                      'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+                  style: TextStyle(fontSize: 16,),
+                ),
               ),
               Spacer(),
               Align(
@@ -93,7 +103,7 @@ class _DoctorDetailsState extends State<DoctorDetails> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => ConfirmAppointment(),
+                            builder: (context) => CancelAppointment(),
                           ),
                         );
                       },
