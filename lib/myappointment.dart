@@ -25,6 +25,11 @@ class _MyAppointmentState extends State<MyAppointment> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
+          appBar: AppBar(
+            title: Text(
+              'My Appoinemnts'
+            ),
+          ),
         body: Container(
           height: double.infinity,
           width: double.infinity,

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_pro/newappointment.dart';
+
+
 import 'myappointment.dart';
 
 class UserAppointment extends StatefulWidget {
@@ -27,21 +30,33 @@ class _UserAppointmentState extends State<UserAppointment> {
                     )
                   ),
                 ),
-                Container(
-                  padding: EdgeInsets.all(10),
-                  alignment: Alignment.center,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: Colors.green,
-                    borderRadius: BorderRadius.circular(20),
+
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Newappointment()),
+                    );
+                  },
+                  child: Container(
+                    padding: EdgeInsets.all(10),
+                    alignment: Alignment.center,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: Colors.green,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Text("New Appointment",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                      color: Colors.white
+                    ),),
                   ),
-                  child: Text("New Appointment",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
-                    color: Colors.white
-                  ),),
                 ),
+
+
+
                 SizedBox(height: 20),
                 InkWell(
                   onTap: () {
