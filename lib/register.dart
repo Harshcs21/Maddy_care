@@ -148,35 +148,35 @@ class _MyRegisterState extends State<MyRegister> {
 
 
                                 // Check if passwords match
-                                // if (_password == _confirmPassword) {
-                                //   // Passwords match, perform registration
-                                //   // This is just an example navigation
-                                //   Navigator.pushReplacement(
-                                //     context,
-                                //     MaterialPageRoute(
-                                //       builder: (context) => MyDoctor(),
-                                //     ),
-                                //   );
-                                // } else {
-                                //   // Passwords don't match, show an error or alert
-                                //   showDialog(
-                                //     context: context,
-                                //     builder: (context) {
-                                //       return AlertDialog(
-                                //         title: Text('Error'),
-                                //         content: Text('Passwords do not match'),
-                                //         actions: [
-                                //           TextButton(
-                                //             onPressed: () {
-                                //               Navigator.pop(context);
-                                //             },
-                                //             child: Text('OK'),
-                                //           ),
-                                //         ],
-                                //       );
-                                //     },
-                                //   );
-                                // }
+                                if (_password == _confirmPassword) {
+                                  // Passwords match, perform registration
+                                  // This is just an example navigation
+                                  Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => MyDoctor(),
+                                    ),
+                                  );
+                                } else {
+                                  // Passwords don't match, show an error or alert
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) {
+                                      return AlertDialog(
+                                        title: Text('Error'),
+                                        content: Text('Passwords do not match'),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                            },
+                                            child: Text('OK'),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
+                                }
                               },
                               icon: Icon(Icons.arrow_forward),
                             ),
