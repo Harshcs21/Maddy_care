@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_pro/doctordetail.dart';
+import 'package:flutter_pro/dateandtime.dart';
 
 class PatientDetails extends StatefulWidget {
   const PatientDetails({Key? key}) : super(key: key);
@@ -9,13 +10,10 @@ class PatientDetails extends StatefulWidget {
 }
 
 class _PatientDetailsState extends State<PatientDetails> {
-
   TextEditingController _patientName = TextEditingController();
   TextEditingController _patientAge = TextEditingController();
   TextEditingController _mobile = TextEditingController();
   TextEditingController _diseaseSymptoms = TextEditingController();
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -35,10 +33,26 @@ class _PatientDetailsState extends State<PatientDetails> {
                   'Patient Name',
                   style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
                 ),
-                TextFormField(
-                  controller: _patientName,
-                  decoration: InputDecoration(
-                    hintText: 'Enter patient name',
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(8.0),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.5),
+                        spreadRadius: 2,
+                        blurRadius: 5,
+                        offset: Offset(0, 3),
+                      ),
+                    ],
+                  ),
+                  child: TextFormField(
+                    controller: _patientName,
+                    decoration: InputDecoration(
+                      hintText: 'Enter patient name',
+                      contentPadding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
+                      border: InputBorder.none,
+                    ),
                   ),
                 ),
                 SizedBox(height: 20.0),
@@ -46,10 +60,26 @@ class _PatientDetailsState extends State<PatientDetails> {
                   'Patient Age',
                   style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
                 ),
-                TextFormField(
-                  controller: _patientAge,
-                  decoration: InputDecoration(
-                    hintText: 'Enter patient age',
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(8.0),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.5),
+                        spreadRadius: 2,
+                        blurRadius: 5,
+                        offset: Offset(0, 3),
+                      ),
+                    ],
+                  ),
+                  child: TextFormField(
+                    controller: _patientAge,
+                    decoration: InputDecoration(
+                      hintText: 'Enter patient age',
+                      contentPadding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
+                      border: InputBorder.none,
+                    ),
                   ),
                 ),
                 SizedBox(height: 20.0),
@@ -57,10 +87,26 @@ class _PatientDetailsState extends State<PatientDetails> {
                   'Mobile Number',
                   style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
                 ),
-                TextFormField(
-                  controller: _mobile,
-                  decoration: InputDecoration(
-                    hintText: 'Enter mobile number',
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(8.0),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.5),
+                        spreadRadius: 2,
+                        blurRadius: 5,
+                        offset: Offset(0, 3),
+                      ),
+                    ],
+                  ),
+                  child: TextFormField(
+                    controller: _mobile,
+                    decoration: InputDecoration(
+                      hintText: 'Enter mobile number',
+                      contentPadding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
+                      border: InputBorder.none,
+                    ),
                   ),
                 ),
                 SizedBox(height: 20.0),
@@ -68,11 +114,27 @@ class _PatientDetailsState extends State<PatientDetails> {
                   'Disease Symptoms',
                   style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
                 ),
-                TextFormField(
-                  controller: _diseaseSymptoms,
-                  maxLines: 3,
-                  decoration: InputDecoration(
-                    hintText: 'Enter disease symptoms',
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(8.0),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.5),
+                        spreadRadius: 2,
+                        blurRadius: 5,
+                        offset: Offset(0, 3),
+                      ),
+                    ],
+                  ),
+                  child: TextFormField(
+                    controller: _diseaseSymptoms,
+                    maxLines: 3,
+                    decoration: InputDecoration(
+                      hintText: 'Enter disease symptoms',
+                      contentPadding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
+                      border: InputBorder.none,
+                    ),
                   ),
                 ),
                 SizedBox(height: 20.0),
@@ -88,7 +150,7 @@ class _PatientDetailsState extends State<PatientDetails> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => DoctorDetails(),
+                          builder: (context) => DateAndTime(),
                         ),
                       );
                     },

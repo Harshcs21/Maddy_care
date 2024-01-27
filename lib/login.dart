@@ -17,17 +17,26 @@ class _MyLoginState extends State<MyLogin> {
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
 
+  @override
+  void dispose()
+  {
+    super.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+  }
+
+
 
   void loginUser() async {
 
     String email = _emailController.text.trim();
     String password = _passwordController.text.trim();
 
-    // String res = "Success";
+    String result = "Success";
 
-    String res = await AuthMethods().loginUser(email: email, password: password);
+    // String result = await AuthMethods().loginUser(email: email, password: password);
 
-    if(res == "Success")
+    if(result == "Success")
       {
         Navigator.push(
                 context,
@@ -38,7 +47,7 @@ class _MyLoginState extends State<MyLogin> {
       {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-                content: Text(res))
+                content: Text(result))
           );
       }
   }
@@ -90,6 +99,7 @@ class _MyLoginState extends State<MyLogin> {
                     height: 30,
                   ),
                   TextField(
+                    controller:_emailController,
                     decoration: InputDecoration(
                         fillColor: Colors.grey.shade100,
                         filled: true,
@@ -101,6 +111,7 @@ class _MyLoginState extends State<MyLogin> {
                     height: 20,
                   ),
                   TextField(
+                    controller:_passwordController,
                     obscureText: true,
                     decoration: InputDecoration(
                         fillColor: Colors.grey.shade100,

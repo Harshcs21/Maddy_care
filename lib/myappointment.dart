@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_pro/cancelappointment.dart';
 
 class MyAppointment extends StatefulWidget {
   const MyAppointment({Key? key}) : super(key: key);
@@ -56,7 +57,14 @@ class _MyAppointmentState extends State<MyAppointment> {
                     ),),
                     ElevatedButton(
 
-                        onPressed: (){},
+                        onPressed: (){
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => CancelAppointment(),
+                            ),
+                          );
+                        },
                         child: Text("cancel",
                         style: TextStyle(
                           color: Colors.black

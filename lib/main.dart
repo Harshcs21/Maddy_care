@@ -1,4 +1,7 @@
+// import 'dart:js';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_pro/dateandtime.dart';
 import 'package:flutter_pro/firebase_options.dart';
 import 'doctorinfo.dart';
 import 'forgotpassword.dart';
@@ -26,7 +29,8 @@ void main() async{
       'login': (context) => MyLogin(),
       'register': (context) => MyRegister(),
       'doctorinfo' : (context) => MyDoctor(),
-      'forgotpassword' : (context) => MyForgotPassword()
+      'forgotpassword' : (context) => MyForgotPassword(),
+      'dateandtime' : (context) => DateAndTime()
     },
   ));
 }

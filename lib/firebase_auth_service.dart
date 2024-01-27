@@ -55,20 +55,51 @@ class AuthMethods{
           UserCredential user = await _auth.signInWithEmailAndPassword(email: email, password: password);
           result = "Success";
         }
-      else if(email.isEmpty || password.isEmpty)
-      {
-        result = "Please enter all the credentials";
-      }
       else
         {
-          result = "Wrong email or password";
+          result = "please enter all the fields";
         }
+
     }catch(err){
         result = err.toString();
     }
 
     return result;
   }
+
+  // Future<String> patientDetails({
+  //   required String patient_name,
+  //   required String patient_age,
+  //   required String mobile_number,
+  //   required String disease_symtoms,
+  //
+  // }) async
+  // {
+  //   String res = "Some error occured";
+  //
+  //   try{
+  //     if(patient_name.isNotEmpty || patient_age.isNotEmpty || mobile_number.isNotEmpty || disease_symtoms.isNotEmpty){
+  //       // register user
+  //       UserCredential cred = await _auth.createUserWithEmailAndPassword(email: email, password: password);
+  //       print(cred.user!.uid);
+  //
+  //       // add user to our databse
+  //       _firestore.collection('users').doc(cred.user!.uid).set({
+  //         'username': username,
+  //         'uid': cred.user!.uid,
+  //         'email': email,
+  //         'password': password,
+  //         'confirmPassword': confirmPassword
+  //       });
+  //       res = "Success";
+  //     }
+  //   }catch(err)
+  //   {
+  //     res = err.toString();
+  //   }
+  //
+  //   return res;
+  // }
 
 }
 

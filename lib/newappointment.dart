@@ -12,14 +12,14 @@ class Newappointment extends StatefulWidget {
 class _NewappointmentState extends State<Newappointment> {
 
   final List images = [
-    "assets/splash.png",
-    "assets/login_page.png",
-    "assets/undraw_doctors_p6aq 1.png",
-    "assets/splash.png",
-    "assets/login_page.png",
-    "assets/undraw_doctors_p6aq 1.png",
-    "assets/splash.png",
-    "assets/login_page.png",
+    "assets/bone.png",
+    "assets/dentist.png",
+    "assets/ent.png",
+    "assets/eyes.png",
+    "assets/fever.png",
+    "assets/skin.png",
+    // "assets/splash.png",
+    // "assets/login_page.png",
   ];
 
   @override

@@ -15,7 +15,7 @@ class _DoctorDetailsState extends State<DoctorDetails> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Doctor Details'),
+          title: Text('        Doctor Details'),
         ),
         body: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -103,7 +103,7 @@ class _DoctorDetailsState extends State<DoctorDetails> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => CancelAppointment(),
+                            builder: (context) => ConfirmAppointment(),
                           ),
                         );
                       },
