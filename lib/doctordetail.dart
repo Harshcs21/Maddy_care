@@ -30,7 +30,7 @@ class _DoctorDetailsState extends State<DoctorDetails> {
                     width: 100,
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                        image: AssetImage("assets/splash.png"),
+                        image: AssetImage("assets/doctorimage.png"),
                       )
                     ),
                   ),
@@ -71,7 +71,7 @@ class _DoctorDetailsState extends State<DoctorDetails> {
               Container(
                 padding: EdgeInsets.all(20),
                 decoration: BoxDecoration(
-                  color: Colors.grey,
+                  color: Colors.blue.shade100,
                   borderRadius: BorderRadius.only(topLeft: Radius.circular(40), bottomRight: Radius.circular(40)),
                 ),
                 child: Text(

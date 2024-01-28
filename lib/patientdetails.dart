@@ -75,6 +75,7 @@ class _PatientDetailsState extends State<PatientDetails> {
                   ),
                   child: TextFormField(
                     controller: _patientAge,
+                    keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                       hintText: 'Enter patient age',
                       contentPadding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
@@ -102,6 +103,7 @@ class _PatientDetailsState extends State<PatientDetails> {
                   ),
                   child: TextFormField(
                     controller: _mobile,
+                    keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                       hintText: 'Enter mobile number',
                       contentPadding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),

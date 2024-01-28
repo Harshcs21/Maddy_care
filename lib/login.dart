@@ -3,6 +3,8 @@ import 'package:flutter_pro/doctorinfo.dart';
 import 'package:flutter_pro/firebase_auth_service.dart';
 import 'package:flutter_pro/userappointment.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_pro/reg_doc_user.dart';
 
 
 class MyLogin extends StatefulWidget {
@@ -32,17 +34,23 @@ class _MyLoginState extends State<MyLogin> {
     String email = _emailController.text.trim();
     String password = _passwordController.text.trim();
 
-    String result = "Success";
+    // String result = "Doctor";
 
-    // String result = await AuthMethods().loginUser(email: email, password: password);
-
-    if(result == "Success")
+    String result = await AuthMethods().loginUser(email: email, password: password);
+    if(result == "user")
       {
         Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => UserAppointment()),
               );
       }
+    else if(result == "Doctor")
+    {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => MyDoctor()),
+      );
+    }
     else
       {
           ScaffoldMessenger.of(context).showSnackBar(
@@ -162,8 +170,11 @@ class _MyLoginState extends State<MyLogin> {
                     children: [
                       InkWell(
                           onTap: () {
-                            Navigator.pushNamed(context, 'register');
+                            Navigator.push(
+                              context,MaterialPageRoute(builder: (context)=> RegDocUser())
+                            );
                           },
+
                           child: Text(
                             'Sign Up',
                             style: TextStyle(

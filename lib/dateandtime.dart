@@ -109,14 +109,15 @@ class _DateAndTimeState extends State<DateAndTime> {
             Spacer(), // Add spacer to push the continue button to the bottom
             ElevatedButton(
               onPressed: () => _navigateToDoctorDetails(context),
-              style: ElevatedButton.styleFrom(
-                primary: Colors.green,
-                padding: EdgeInsets.all(0), // Remove padding
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-              ),
+              // style: ElevatedButton.styleFrom(
+              //   // primary: Colors.green,
+              //   padding: EdgeInsets.all(0), // Remove padding
+              //   shape: RoundedRectangleBorder(
+              //     borderRadius: BorderRadius.circular(10.0),
+              //   ),
+              // ),
               child: Container(
+
                 alignment: Alignment.center,
                 width: double.infinity,
                 height: 50.0,

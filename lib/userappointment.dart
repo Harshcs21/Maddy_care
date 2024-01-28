@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_pro/newappointment.dart';
-
-
 import 'myappointment.dart';
 
 class UserAppointment extends StatefulWidget {
@@ -12,11 +9,18 @@ class UserAppointment extends StatefulWidget {
   State<UserAppointment> createState() => _UserAppointmentState();
 }
 
+
+
+
+
 class _UserAppointmentState extends State<UserAppointment> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
+          appBar: AppBar(
+            title: Text('           Home Page'),
+          ),
           body: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: Column(
