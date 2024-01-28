@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_pro/doctordetail.dart';
+import 'patientdetails.dart';
 
 class DateAndTime extends StatefulWidget {
   const DateAndTime({Key? key}) : super(key: key);
@@ -108,7 +109,12 @@ class _DateAndTimeState extends State<DateAndTime> {
             ),
             Spacer(), // Add spacer to push the continue button to the bottom
             ElevatedButton(
-              onPressed: () => _navigateToDoctorDetails(context),
+              onPressed: () {
+                date = _selectedDate.toString();
+                time = _selectedTime.toString();
+
+                 _navigateToDoctorDetails(context);
+              },
               style: ElevatedButton.styleFrom(
                 primary: Colors.green,
                 padding: EdgeInsets.all(0), // Remove padding

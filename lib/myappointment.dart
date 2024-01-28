@@ -1,5 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_pro/cancelappointment.dart';
+import 'package:flutter_pro/firebase_auth_service.dart';
+import 'package:flutter_pro/patientdetails.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_pro/register.dart';
+import 'package:firebase_core/firebase_core.dart';
+
 
 class MyAppointment extends StatefulWidget {
   const MyAppointment({Key? key}) : super(key: key);
@@ -10,17 +17,9 @@ class MyAppointment extends StatefulWidget {
 
 class _MyAppointmentState extends State<MyAppointment> {
 
-  final List appointments = [
-    'skin',
-    'bone',
-    'eyes',
-    'ENT',
-    'fever',
-    'typhoid',
-    'jaundice',
-    'diarrea',
-    'dengue',
-  ];
+
+
+  dynamic appointments = AuthMethods().getUserAppointments() as List;
 
   @override
   Widget build(BuildContext context) {
@@ -50,11 +49,20 @@ class _MyAppointmentState extends State<MyAppointment> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Text(appointments[item],
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20
-                    ),),
+                    Column(
+                      children: [
+                        Text("name:",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20
+                        ),),
+                        Text("Doctor: ",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20
+                        ),),
+                      ],
+                    ),
                     ElevatedButton(
 
                         onPressed: (){
@@ -76,5 +84,17 @@ class _MyAppointmentState extends State<MyAppointment> {
           }),
         ),
     ));
+  }
+}
+
+class appointments extends StatelessWidget{
+
+
+  @override
+  Widget build(BuildContext context) {
+
+
+
+
   }
 }

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_pro/cancelappointment.dart';
 import 'package:flutter_pro/confirmappointment.dart';
+import 'package:flutter_pro/firebase_auth_service.dart';
+import 'package:flutter_pro/patientdetails.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class DoctorDetails extends StatefulWidget {
   const DoctorDetails({Key? key}) : super(key: key);
@@ -29,10 +32,9 @@ class _DoctorDetailsState extends State<DoctorDetails> {
                     height: 100,
                     width: 100,
                     decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage("assets/splash.png"),
-                      )
-                    ),
+                        image: DecorationImage(
+                      image: AssetImage("assets/splash.png"),
+                    )),
                   ),
                   SizedBox(width: 20),
                   Column(
@@ -40,7 +42,8 @@ class _DoctorDetailsState extends State<DoctorDetails> {
                     children: [
                       Text(
                         'Dr. John Doe',
-                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
                       ),
                       Text(
                         'General Physician',
@@ -58,8 +61,8 @@ class _DoctorDetailsState extends State<DoctorDetails> {
               SizedBox(height: 10),
               Text(
                 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. '
-                    'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. '
-                    'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+                'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. '
+                'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
                 style: TextStyle(fontSize: 16),
               ),
               SizedBox(height: 20),
@@ -72,14 +75,18 @@ class _DoctorDetailsState extends State<DoctorDetails> {
                 padding: EdgeInsets.all(20),
                 decoration: BoxDecoration(
                   color: Colors.grey,
-                  borderRadius: BorderRadius.only(topLeft: Radius.circular(40), bottomRight: Radius.circular(40)),
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(40),
+                      bottomRight: Radius.circular(40)),
                 ),
                 child: Text(
                   textAlign: TextAlign.center,
                   'Lorem ipsum dolor sit amet, consectetur adipiscing elit. '
-                      'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. '
-                      'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-                  style: TextStyle(fontSize: 16,),
+                  'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. '
+                  'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+                  style: TextStyle(
+                    fontSize: 16,
+                  ),
                 ),
               ),
               Spacer(),
@@ -88,32 +95,41 @@ class _DoctorDetailsState extends State<DoctorDetails> {
                 child: Padding(
                   padding: const EdgeInsets.only(bottom: 20.0),
                   child: ElevatedButton(
-                    onPressed: () {
-                      // Navigate to booking page
+                    onPressed: () async {
+                      doctor = "Dr. Shailu";
+
+                      String res = await AuthMethods().addAppointment(
+                          name: name,
+                          date: date,
+                          time: time,
+                          doctor: doctor,
+                          phone: phone);
+
+                      if(res == "Successfully appointment booked")
+                        {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ConfirmAppointment(),
+                            ),
+                          );
+                        }
                     },
                     style: ElevatedButton.styleFrom(
                       primary: Colors.green, // Set button color
-                      padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 32.0), // Set padding
+                      padding: EdgeInsets.symmetric(
+                          vertical: 16.0, horizontal: 32.0), // Set padding
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0), // Set rounded corners
+                        borderRadius:
+                            BorderRadius.circular(10.0), // Set rounded corners
                       ),
                     ),
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => ConfirmAppointment(),
-                          ),
-                        );
-                      },
-                      child: Text(
-                        'Book Appointment',
-                        style: TextStyle(
-                          color: Colors.white, // Set text color
-                          fontSize: 18.0,
-                          fontWeight: FontWeight.bold,
-                        ),
+                    child: Text(
+                      'Book Appointment',
+                      style: TextStyle(
+                        color: Colors.white, // Set text color
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
