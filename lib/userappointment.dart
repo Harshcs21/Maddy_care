@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_pro/newappointment.dart';
-
-
 import 'myappointment.dart';
 
 class UserAppointment extends StatefulWidget {
@@ -87,3 +84,9 @@ class _UserAppointmentState extends State<UserAppointment> {
         ));
   }
 }
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    throw UnimplementedError();
+  }

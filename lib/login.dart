@@ -32,9 +32,9 @@ class _MyLoginState extends State<MyLogin> {
     String email = _emailController.text.trim();
     String password = _passwordController.text.trim();
 
-    String result = "Success";
+    // String result = "Success";
 
-    // String result = await AuthMethods().loginUser(email: email, password: password);
+    String result = await AuthMethods().loginUser(email: email, password: password);
 
     if(result == "Success")
       {
