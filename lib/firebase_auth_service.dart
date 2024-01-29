@@ -11,6 +11,7 @@ import 'package:flutter_pro/reg_doc_user.dart';
 class AuthMethods {
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  // final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   Future<String> signUpUser({
