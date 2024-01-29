@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_pro/firebase_auth_service.dart';
 import 'package:flutter_pro/newappointment.dart';
 import 'myappointment.dart';
 import 'package:flutter/services.dart';
@@ -105,3 +106,9 @@ class _UserAppointmentState extends State<UserAppointment> {
 
   }
 }
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    throw UnimplementedError();
+  }

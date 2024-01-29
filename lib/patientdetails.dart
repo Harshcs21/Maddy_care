@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_pro/doctordetail.dart';
 import 'package:flutter_pro/dateandtime.dart';
+import 'package:flutter_pro/firebase_auth_service.dart';
+
+String name = "";
+String phone = "";
+String date = "";
+String time = "";
+String doctor = "";
 
 class PatientDetails extends StatefulWidget {
   const PatientDetails({Key? key}) : super(key: key);
@@ -50,7 +57,8 @@ class _PatientDetailsState extends State<PatientDetails> {
                     controller: _patientName,
                     decoration: InputDecoration(
                       hintText: 'Enter patient name',
-                      contentPadding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
+                      contentPadding: EdgeInsets.symmetric(
+                          horizontal: 16.0, vertical: 12.0),
                       border: InputBorder.none,
                     ),
                   ),
@@ -78,7 +86,8 @@ class _PatientDetailsState extends State<PatientDetails> {
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                       hintText: 'Enter patient age',
-                      contentPadding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
+                      contentPadding: EdgeInsets.symmetric(
+                          horizontal: 16.0, vertical: 12.0),
                       border: InputBorder.none,
                     ),
                   ),
@@ -106,7 +115,8 @@ class _PatientDetailsState extends State<PatientDetails> {
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                       hintText: 'Enter mobile number',
-                      contentPadding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
+                      contentPadding: EdgeInsets.symmetric(
+                          horizontal: 16.0, vertical: 12.0),
                       border: InputBorder.none,
                     ),
                   ),
@@ -134,7 +144,8 @@ class _PatientDetailsState extends State<PatientDetails> {
                     maxLines: 3,
                     decoration: InputDecoration(
                       hintText: 'Enter disease symptoms',
-                      contentPadding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
+                      contentPadding: EdgeInsets.symmetric(
+                          horizontal: 16.0, vertical: 12.0),
                       border: InputBorder.none,
                     ),
                   ),
@@ -142,35 +153,32 @@ class _PatientDetailsState extends State<PatientDetails> {
                 SizedBox(height: 20.0),
                 ElevatedButton(
                   onPressed: () {
-                    // Navigate to next page
+                    name = _patientName.text;
+                    phone = _mobile.text;
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => DateAndTime(),
+                      ),
+                    );
                   },
                   style: ElevatedButton.styleFrom(
                     shadowColor: Colors.grey, // Add shadow color
                   ),
-                  child: InkWell(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => DateAndTime(),
-                        ),
-                      );
-                    },
-                    child: Container(
-                      alignment: Alignment.center,
-                      width: double.infinity,
-                      height: 50.0,
-                      decoration: BoxDecoration(
-                        color: Colors.green, // Set button color
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      child: Text(
-                        'Continue',
-                        style: TextStyle(
-                          color: Colors.white, // Set text color
-                          fontSize: 18.0,
-                          fontWeight: FontWeight.bold,
-                        ),
+                  child: Container(
+                    alignment: Alignment.center,
+                    width: double.infinity,
+                    height: 50.0,
+                    decoration: BoxDecoration(
+                      color: Colors.green, // Set button color
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    child: Text(
+                      'Continue',
+                      style: TextStyle(
+                        color: Colors.white, // Set text color
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
