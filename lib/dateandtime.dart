@@ -122,7 +122,9 @@ class _DateAndTimeState extends State<DateAndTime> {
                   borderRadius: BorderRadius.circular(10.0),
                 ),
               ),
+
               child: Container(
+
                 alignment: Alignment.center,
                 width: double.infinity,
                 height: 50.0,

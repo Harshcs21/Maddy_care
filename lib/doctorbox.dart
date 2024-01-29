@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_pro/cancelappointment.dart';
 
 class DoctorBox extends StatelessWidget {
 
@@ -12,7 +13,7 @@ class DoctorBox extends StatelessWidget {
       padding: EdgeInsets.symmetric(vertical: 20),
       margin: EdgeInsets.symmetric(vertical: 10),
       decoration: BoxDecoration(
-        color: Colors.grey,
+        color: Colors.grey.shade300,
         borderRadius: BorderRadius.circular(10),
       ),
       child: Column(
@@ -24,7 +25,7 @@ class DoctorBox extends StatelessWidget {
                 child: Text(name,
                   style: TextStyle(
                       fontSize: 20,
-                      fontWeight: FontWeight.w400
+                      fontWeight: FontWeight.w600
                   ),),
               ),
               Container(
@@ -41,31 +42,47 @@ class DoctorBox extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Container(
-                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 30),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(20),
+              InkWell(
+                onTap: (){
+                  ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                          content: Text("Patient Checked"))
+                  );
+                },
+                child: Container(
+                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 30),
+                  decoration: BoxDecoration(
+                    color: Colors.grey.shade500,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Text(
+                    "Done",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15
+                    ),),
                 ),
-                child: Text(
-                  "Done",
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 15
-                  ),),
               ),
-              Container(
-                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 30),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(20),
+              InkWell(
+                onTap: (){
+                  ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                          content: Text("Appointment cancelled Succesfully"))
+                  );
+                },
+                child: Container(
+                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 30),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Text(
+                    "Cancel",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15
+                    ),),
                 ),
-                child: Text(
-                  "Cancel",
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 15
-                  ),),
               ),
             ],
           )

@@ -1,8 +1,12 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_pro/register.dart';
+import 'package:flutter_pro/reg_doc_user.dart';
+import 'register.dart';
 import 'package:uuid/uuid.dart';
+
+
+
 
 class AuthMethods {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -17,17 +21,14 @@ class AuthMethods {
     String res = "Some error occured";
 
     try {
-      if (email.isNotEmpty ||
-          username.isNotEmpty ||
-          password.isNotEmpty ||
-          confirmPassword.isNotEmpty) {
+      if (email.isNotEmpty || username.isNotEmpty || password.isNotEmpty || confirmPassword.isNotEmpty) {
         // register user
         UserCredential cred = await _auth.createUserWithEmailAndPassword(
             email: email, password: password);
         print(cred.user!.uid);
 
         // add user to our databse
-        _firestore.collection('users').doc(cred.user!.uid).set({
+        _firestore.collection(global).doc(cred.user!.uid).set({
           'username': username,
           'uid': cred.user!.uid,
           'email': email,
@@ -42,7 +43,28 @@ class AuthMethods {
 
     return res;
   }
-
+  // Future <String> loginUser({
+  //   required String email,
+  //   required String password,
+  // }) async {
+  //   String result = "Some error occured";
+  //
+  //   try {
+  //     if (email.isNotEmpty || password.isNotEmpty) {
+  //       UserCredential user = await _auth.signInWithEmailAndPassword(
+  //           email: email, password: password);
+  //       result = "Success";
+  //     }
+  //     else {
+  //       result = "please enter all the fields";
+  //     }
+  //   } catch (err) {
+  //     result = err.toString();
+  //   }
+  //
+  //   return result;
+  // }
+// }
   Future<String> loginUser({
     required String email,
     required String password,
@@ -50,15 +72,26 @@ class AuthMethods {
     String result = "Some error occured";
 
     try {
-      if (email.isNotEmpty || password.isNotEmpty) {
-        UserCredential user = await _auth.signInWithEmailAndPassword(
-            email: email, password: password);
-        result = "Success";
+      if (email.isNotEmpty && password.isNotEmpty) {
+        UserCredential userCredential = await _auth.signInWithEmailAndPassword(
+          email: email,
+          password: password,
+        );
+
+        // Check if the user is a doctor
+        DocumentSnapshot doctorSnapshot = await _firestore.collection('Doctors').doc(userCredential.user!.uid).get();
+        if (doctorSnapshot.exists) {
+          // Navigate to doctor's page
+          result = "Doctor";
+        } else {
+          // Navigate to patient's page
+          result = "user";
+        }
       } else {
-        result = "please enter all the fields";
+        result = "Please enter all the fields";
       }
-    } catch (err) {
-      result = err.toString();
+    } catch (error) {
+      result = error.toString();
     }
 
     return result;
@@ -116,3 +149,13 @@ class AuthMethods {
     return data;
   }
 }
+
+
+
+
+
+
+
+
+
+

@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_pro/doctorbox.dart';
 
-class MyDoctor extends StatefulWidget {
+  class MyDoctor extends StatefulWidget {
   const MyDoctor({super.key});
 
   @override
@@ -23,6 +23,9 @@ class _MyDoctorState extends State<MyDoctor> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          title: Text('     Doctor Appointment'),
+        ),
         body: SafeArea(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 16),
@@ -32,7 +35,7 @@ class _MyDoctorState extends State<MyDoctor> {
                     margin: EdgeInsets.symmetric(vertical: 10),
                     padding: EdgeInsets.all(15),
                     decoration: BoxDecoration(
-                      color: Colors.blue,
+                      color: Colors.blue.shade600,
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Row(
@@ -40,7 +43,11 @@ class _MyDoctorState extends State<MyDoctor> {
                       children: [
                         Column(
                           children: [
-                            Text("Dr. Shailendra"),
+                            Text("Dr. Shailendra",
+                              style: TextStyle(
+                                fontSize: 18
+                              ),
+                            ),
                             Text("Total Appointments: 30"),
                             Text("Offline Appointments: 10"),
                             Text("Online Appointments: 20")
@@ -51,7 +58,7 @@ class _MyDoctorState extends State<MyDoctor> {
                           width: 100,
                           decoration: BoxDecoration(
                               image: DecorationImage(
-                                image: AssetImage('assets/login_page.png'),
+                                image: AssetImage('assets/doctorimage.png'),
                               )
                           ),
                         )

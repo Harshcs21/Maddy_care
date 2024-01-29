@@ -7,6 +7,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_pro/register.dart';
 import 'package:firebase_core/firebase_core.dart';
 
+import 'myappointment.dart';
+import 'myappointment.dart';
+
 
 class MyAppointment extends StatefulWidget {
   const MyAppointment({Key? key}) : super(key: key);
@@ -18,9 +21,6 @@ class MyAppointment extends StatefulWidget {
 class _MyAppointmentState extends State<MyAppointment> {
 
 
-
-  dynamic appointments = AuthMethods().getUserAppointments() as List;
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -30,71 +30,39 @@ class _MyAppointmentState extends State<MyAppointment> {
               'My Appoinemnts'
             ),
           ),
-        body: Container(
-          height: double.infinity,
-          width: double.infinity,
-          child: ListView.builder(
-              itemCount: appointments.length,
-              itemBuilder: (context, item){
-            return Center(
-              child: Container(
-                alignment: Alignment.center,
-                width: double.infinity,
-                padding: EdgeInsets.all(20),
-                margin: EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  color: Colors.grey,
-                  borderRadius: BorderRadius.circular(20)
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Column(
-                      children: [
-                        Text("name:",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20
-                        ),),
-                        Text("Doctor: ",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20
-                        ),),
-                      ],
-                    ),
-                    ElevatedButton(
-
-                        onPressed: (){
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => CancelAppointment(),
-                            ),
-                          );
-                        },
-                        child: Text("cancel",
-                        style: TextStyle(
-                          color: Colors.black
-                        ),))
-                  ],
-                ),
-              ),
-            );
-          }),
-        ),
+        body: new appointments(),
     ));
   }
 }
 
 class appointments extends StatelessWidget{
 
-
   @override
   Widget build(BuildContext context) {
 
+    final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+    final FirebaseAuth _auth = FirebaseAuth.instance;
 
+    return StreamBuilder(
+        stream: _firestore.collection('users').doc(_auth.currentUser!.uid).collection('myAppointments').snapshots(),
+        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          if(!snapshot.hasData) return Text('Loading...');
+          return ListView(
+            children: snapshot.data!.docs.map((document){
+              return ListTile(
+                title: document['patient name'],
+                subtitle: document['doctor'],
+              );
+            }).toList(),
+          );
+        });
 
 
   }
 }
+
+// class appointments extends StatelessWidget{
+//
+//
+//
+// }

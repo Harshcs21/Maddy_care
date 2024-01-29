@@ -35,7 +35,7 @@ class _DoctorDetailsState extends State<DoctorDetails> {
                         image: DecorationImage(
                       image: AssetImage("assets/splash.png"),
                     )),
-                  ),
+                    ),
                   SizedBox(width: 20),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -51,7 +51,7 @@ class _DoctorDetailsState extends State<DoctorDetails> {
                       ),
                     ],
                   ),
-                ],
+              ]
               ),
               SizedBox(height: 20),
               Text(
@@ -136,9 +136,8 @@ class _DoctorDetailsState extends State<DoctorDetails> {
                 ),
               ),
             ],
-          ),
         ),
       ),
-    );
+    ),);
   }
 }

@@ -1,5 +1,3 @@
-// import 'dart:js_util';
-
 import 'dart:math';
 
 import 'package:firebase_core/firebase_core.dart';
@@ -7,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_pro/doctorinfo.dart';
 import 'package:flutter_pro/firebase_auth_service.dart';
 import 'package:flutter_pro/login.dart';
-// import 'package:firebase_auth/firebase_auth.dart';
 
 class MyRegister extends StatefulWidget {
   const MyRegister({Key? key}) : super(key: key);
@@ -25,22 +22,14 @@ class _MyRegisterState extends State<MyRegister> {
   String _password = '';
   String _confirmPassword = '';
 
-  // void dispose() {
-  //   _nameController.dispose();
-  //   _emailController.dispose();
-  //   _passwordController.dispose();
-  //   _confirmPasswordController.dispose();
-  // }
-
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     Firebase.initializeApp().whenComplete(() {
       print("completed");
       setState(() {});
-  });}
-
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +41,6 @@ class _MyRegisterState extends State<MyRegister> {
             title: Text(
               'Registration',
               style: TextStyle(
-                // color: Colors.black,
                 fontSize: 50,
                 fontWeight: FontWeight.bold,
               ),
@@ -156,18 +144,21 @@ class _MyRegisterState extends State<MyRegister> {
                                 var confirmPassword =
                                     _confirmPasswordController.text;
 
-                                // await FirebaseAuth.instance.createUserWithEmailAndPassword(
-                                //   email: email,
-                                //   password: password
-                                // ).then((value) => {
-                                //   log("user created"),
-                                // });
+                                // Check if all fields are filled
+                                if (name.isEmpty ||
+                                    email.isEmpty ||
+                                    password.isEmpty ||
+                                    confirmPassword.isEmpty) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text('Please enter all the fields'),
+                                    ),
+                                  );
+                                  return;
+                                }
 
                                 // Check if passwords match
                                 if (_password == _confirmPassword) {
-                                  // Passwords match, perform registration
-                                  // This is just an example navigation
-
                                   String res = await AuthMethods().signUpUser(
                                       email: email,
                                       username: name,
@@ -179,11 +170,10 @@ class _MyRegisterState extends State<MyRegister> {
                                   Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => MyDoctor(),
+                                      builder: (context) => MyLogin(),
                                     ),
                                   );
                                 } else {
-                                  // Passwords don't match, show an error or alert
                                   showDialog(
                                     context: context,
                                     builder: (context) {
@@ -237,5 +227,3 @@ class _MyRegisterState extends State<MyRegister> {
     );
   }
 }
-
-class FirebaseAuth {}
