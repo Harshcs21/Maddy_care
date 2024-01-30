@@ -1,5 +1,3 @@
-//
-//
 // // This is not working properly ==> i made this page for the auth so that
 // // if user is logged in then he does want to login again.
 //
@@ -17,18 +15,18 @@
 //   @override
 //   Widget build(BuildContext context) {
 //     return Scaffold(
-//       body: StreamBuilder<User?>(
-//         stream: FirebaseAuth.instance.authStateChanges(),
-//         builder: (context, snapshot){
-//           if(snapshot.hasData)
+//         body: StreamBuilder<User?>(
+//           stream: FirebaseAuth.instance.authStateChanges(),
+//           builder: (context, snapshot){
+//             if(snapshot.hasData)
 //             {
 //               return UserAppointment();
 //             }else{
-//             return MyLogin();
-//           }
-//         },
+//               return MyLogin();
+//             }
+//           },
 //
-//       )
+//         )
 //     );
 //   }
 // }

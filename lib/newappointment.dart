@@ -42,8 +42,8 @@ class _NewappointmentState extends State<Newappointment> {
               return InkWell(
                 onTap: () {
                   Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => PatientDetails()),
+                    context,
+                    MaterialPageRoute(builder: (context) => PatientDetails()),
                   );
                 },
                 child: Container(

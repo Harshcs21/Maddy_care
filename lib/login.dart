@@ -7,7 +7,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_pro/reg_doc_user.dart';
 
 
-class MyLogin extends StatefulWidget {
+  class MyLogin extends StatefulWidget {
   const MyLogin({super.key});
 
   @override
@@ -35,11 +35,12 @@ class _MyLoginState extends State<MyLogin> {
     String password = _passwordController.text.trim();
 
 
+    // String result = await AuthMethods().loginUser(email: email, password: password);
+
+    // if(result == "Success")
+
     String result = await AuthMethods().loginUser(email: email, password: password);
 
-    if(result == "Success")
-
-    String result = await AuthMethods().loginUser(email: email, password: password);
     if(result == "user")
       {
         Navigator.pushReplacement(
