@@ -12,7 +12,6 @@ class UserAppointment extends StatefulWidget {
 }
 
 
-
 class _UserAppointmentState extends State<UserAppointment> {
 
   void signUserOut()
