@@ -42,14 +42,14 @@ class _MyLoginState extends State<MyLogin> {
     String result = await AuthMethods().loginUser(email: email, password: password);
     if(result == "user")
       {
-        Navigator.push(
+        Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(builder: (context) => UserAppointment()),
               );
       }
     else if(result == "Doctor")
     {
-      Navigator.push(
+      Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => MyDoctor()),
       );
