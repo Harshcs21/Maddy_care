@@ -1,8 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
-        android:label="flutter_pro"
+        android:label="Meddy Care"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/medicalapp">
         <activity
             android:name=".MainActivity"
             android:exported="true"

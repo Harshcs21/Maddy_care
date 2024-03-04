@@ -1,15 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_pro/doctor.dart';
 import 'package:flutter_pro/doctordetail.dart';
 import 'patientdetails.dart';
+import 'doctor.dart';
 
 class DateAndTime extends StatefulWidget {
-  const DateAndTime({Key? key}) : super(key: key);
+
+  String? doctor_name;
+  String? doctor_uid;
+  String? doctor_image;
+
+  DateAndTime({Key? key, required this.doctor_name, required this.doctor_uid, required this.doctor_image}) : super(key: key);
 
   @override
-  State<DateAndTime> createState() => _DateAndTimeState();
+  State<DateAndTime> createState() => _DateAndTimeState(doctor_name: doctor_name, doctor_image: doctor_image, doctor_uid: doctor_uid);
 }
 
 class _DateAndTimeState extends State<DateAndTime> {
+
+  String? doctor_name;
+  String? doctor_uid;
+  String? doctor_image;
+
+  _DateAndTimeState({required this.doctor_name, required this.doctor_uid, required this.doctor_image});
+
+
+
   DateTime _selectedDate = DateTime.now();
   TimeOfDay _selectedTime = TimeOfDay.now();
 
@@ -39,11 +55,11 @@ class _DateAndTimeState extends State<DateAndTime> {
     }
   }
 
-  void _navigateToDoctorDetails(BuildContext context) {
+  void _navigateToDoctorDetails(BuildContext context, String? doctor_name, String? doctor_image, String? doctor_uid) {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => DoctorDetails(),
+        builder: (context) => DoctorDetails(doctor_name: doctor_name, doctor_image: doctor_image, doctor_uid: doctor_uid),
       ),
     );
   }
@@ -113,7 +129,7 @@ class _DateAndTimeState extends State<DateAndTime> {
                 date = _selectedDate.toString();
                 time = _selectedTime.toString();
 
-                 _navigateToDoctorDetails(context);
+                 _navigateToDoctorDetails(context, doctor_name, doctor_image, doctor_uid);
               },
               style: ElevatedButton.styleFrom(
                 primary: Colors.green,

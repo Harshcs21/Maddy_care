@@ -104,15 +104,17 @@ class AuthMethods {
   required String time,
   required String doctor,
   required String phone,
+  required String doctor_uid,
 
 }) async{
 
     String result = "Some error occured";
 
     try {
-      if(name.isNotEmpty && phone.isNotEmpty && doctor.isNotEmpty && date.isNotEmpty && time.isNotEmpty)
+      if(name.isNotEmpty && phone.isNotEmpty && doctor.isNotEmpty && date.isNotEmpty && time.isNotEmpty && doctor_uid.isNotEmpty)
         {
           var uuid = Uuid().v4();
+          var uuid2 = Uuid().v4();
 
           await _firestore
               .collection('users')
@@ -126,7 +128,27 @@ class AuthMethods {
             'doctor': doctor,
             'phone': phone,
             'time': time,
+            'doc_uid': doctor_uid,
+            'doc_appointment_id': uuid2,
           });
+
+          await _firestore
+              .collection('Doctors')
+              .doc(doctor_uid)
+              .collection('myAppointments')
+              .doc(uuid2)
+              .set({
+            'id': uuid2,
+            'patient name': name,
+            'date': date,
+            // 'doctor': doctor,
+            'phone': phone,
+            'time': time,
+            'pat_uid': _auth.currentUser!.uid,
+            'pat_appointment_id': uuid,
+          });
+
+
 
           result = "Successfully appointment booked";
         }
@@ -140,15 +162,15 @@ class AuthMethods {
 
     return result;
   }
-
-  Future <List> getUserAppointments() async
-  {
-    QuerySnapshot querySnapshot = await _firestore.collection('users').doc(_auth.currentUser!.uid).collection('myAppointments').get();
-
-    final data = querySnapshot.docs.map((doc) => doc.data()).toList();
-
-    return data;
-  }
+  //
+  // Future <List> getUserAppointments() async
+  // {
+  //   QuerySnapshot querySnapshot = await _firestore.collection('users').doc(_auth.currentUser!.uid).collection('myAppointments').get();
+  //
+  //   final data = querySnapshot.docs.map((doc) => doc.data()).toList();
+  //
+  //   return data;
+  // }
 }
 
 

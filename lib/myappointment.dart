@@ -29,6 +29,9 @@ class Appointments extends StatelessWidget {
     final FirebaseFirestore _firestore = FirebaseFirestore.instance;
     final FirebaseAuth _auth = FirebaseAuth.instance;
 
+    String doctor_uid;
+    String doctor_appointment_id;
+
     return StreamBuilder(
       stream: _firestore
           .collection('users')
@@ -92,24 +95,41 @@ class Appointments extends StatelessWidget {
                             builder: (BuildContext context) {
                               return AlertDialog(
                                 title: Text('Confirm Appointment Cancellation'),
-                                content: Text('Are you sure you want to cancel this appointment?'),
+                                content: Text(
+                                    'Are you sure you want to cancel this appointment?'),
                                 actions: <Widget>[
                                   TextButton(
                                     child: Text('Cancel'),
                                     onPressed: () {
-                                      Navigator.of(context).pop(); // Close the dialog
+                                      Navigator.of(context)
+                                          .pop(); // Close the dialog
                                     },
                                   ),
                                   TextButton(
                                     child: Text('Confirm'),
                                     onPressed: () {
+                                      doctor_uid = data['doc_uid'] ?? 'Unknown';
+                                      doctor_appointment_id =
+                                          data['doc_appointment_id'] ??
+                                              'Unknown';
+
+                                      _firestore
+                                          .collection('Doctors')
+                                          .doc(doctor_uid)
+                                          .collection('myAppointments')
+                                          .doc(doctor_appointment_id)
+                                          .delete();
+
                                       // Delete the appointment document from Firestore
                                       document.reference.delete();
-                                      Navigator.of(context).pop(); // Close the dialog
+                                      Navigator.of(context)
+                                          .pop(); // Close the dialog
                                       // Show Snackbar
-                                      ScaffoldMessenger.of(context).showSnackBar(
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
                                         SnackBar(
-                                          content: Text('Appointment cancelled successfully.'),
+                                          content: Text(
+                                              'Appointment cancelled successfully.'),
                                         ),
                                       );
                                     },

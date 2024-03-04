@@ -5,14 +5,30 @@ import 'package:flutter_pro/firebase_auth_service.dart';
 import 'package:flutter_pro/patientdetails.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import 'doctor.dart';
+
 class DoctorDetails extends StatefulWidget {
-  const DoctorDetails({Key? key}) : super(key: key);
+
+  String? doctor_name;
+  String? doctor_image;
+  String? doctor_uid;
+
+
+  DoctorDetails({Key? key, required this.doctor_name, required this.doctor_image, required this.doctor_uid}) : super(key: key);
 
   @override
-  State<DoctorDetails> createState() => _DoctorDetailsState();
+  State<DoctorDetails> createState() => _DoctorDetailsState(doctor_name: doctor_name, doctor_image: doctor_image, doctor_uid: doctor_uid);
 }
 
 class _DoctorDetailsState extends State<DoctorDetails> {
+
+  String? doctor_name;
+  String? doctor_uid;
+  String? doctor_image;
+
+
+  _DoctorDetailsState({required this.doctor_name, required this.doctor_image, required this.doctor_uid});
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -33,7 +49,7 @@ class _DoctorDetailsState extends State<DoctorDetails> {
                     width: 100,
                     decoration: BoxDecoration(
                         image: DecorationImage(
-                      image: AssetImage("assets/splash.png"),
+                      image: AssetImage(doctor_image != null ? doctor_image! : "assets/doctorimage.png"),
                     )),
                     ),
                   SizedBox(width: 20),
@@ -41,7 +57,7 @@ class _DoctorDetailsState extends State<DoctorDetails> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Dr. John Doe',
+                        doctor_name != null ? doctor_name! : "Dr Dev Shah",
                         style: TextStyle(
                             fontSize: 20, fontWeight: FontWeight.bold),
                       ),
@@ -96,14 +112,16 @@ class _DoctorDetailsState extends State<DoctorDetails> {
                   padding: const EdgeInsets.only(bottom: 20.0),
                   child: ElevatedButton(
                     onPressed: () async {
+
                       doctor = "Dr. Shailu";
 
                       String res = await AuthMethods().addAppointment(
                           name: name,
                           date: date,
                           time: time,
-                          doctor: doctor,
-                          phone: phone);
+                          doctor: doctor_name!,
+                          phone: phone,
+                          doctor_uid: doctor_uid!,);
 
                       if(res == "Successfully appointment booked")
                         {

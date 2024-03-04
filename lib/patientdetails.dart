@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_pro/doctordetail.dart';
 import 'package:flutter_pro/dateandtime.dart';
 import 'package:flutter_pro/firebase_auth_service.dart';
+import 'doctor.dart';
 
 String name = "";
 String phone = "";
@@ -9,14 +10,27 @@ String date = "";
 String time = "";
 String doctor = "";
 
+
 class PatientDetails extends StatefulWidget {
-  const PatientDetails({Key? key}) : super(key: key);
+
+  String? doctor_name;
+  String? doctor_uid;
+  String? doctor_image;
+
+  PatientDetails({Key? key, required this.doctor_name, required this.doctor_uid, required this.doctor_image}) : super(key: key);
 
   @override
-  State<PatientDetails> createState() => _PatientDetailsState();
+  State<PatientDetails> createState() => _PatientDetailsState(doctor_name: doctor_name, doctor_image: doctor_image, doctor_uid: doctor_uid);
 }
 
 class _PatientDetailsState extends State<PatientDetails> {
+
+  String? doctor_name;
+  String? doctor_uid;
+  String? doctor_image;
+
+  _PatientDetailsState({ required this.doctor_name, required this.doctor_uid, required this.doctor_image});
+
   TextEditingController _patientName = TextEditingController();
   TextEditingController _patientAge = TextEditingController();
   TextEditingController _mobile = TextEditingController();
@@ -158,7 +172,7 @@ class _PatientDetailsState extends State<PatientDetails> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => DateAndTime(),
+                        builder: (context) => DateAndTime(doctor_name: doctor_name, doctor_image: doctor_image, doctor_uid: doctor_uid),
                       ),
                     );
                   },
