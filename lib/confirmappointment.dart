@@ -38,7 +38,7 @@ class _ConfirmAppointmentState extends State<ConfirmAppointment> {
                 );
               },
               style: ElevatedButton.styleFrom(
-                primary: Colors.green, // Background color
+                backgroundColor: Colors.green, // Background color
               ),
               child: Text(
                 'Continue',

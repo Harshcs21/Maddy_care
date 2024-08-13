@@ -22,8 +22,7 @@ class RegDocUser extends StatelessWidget {
                 global = "Doctors";
               },
               style: ElevatedButton.styleFrom(
-                primary: Colors.green, // Background color
-                onPrimary: Colors.white, // Text color
+                foregroundColor: Colors.white, backgroundColor: Colors.green, // Text color
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20.0), // Button border radius
                   side: BorderSide(color: Colors.green), // Border color
@@ -42,8 +41,7 @@ class RegDocUser extends StatelessWidget {
                 global = "users";
               },
               style: ElevatedButton.styleFrom(
-                primary: Colors.green, // Background color
-                onPrimary: Colors.white, // Text color
+                foregroundColor: Colors.white, backgroundColor: Colors.green, // Text color
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20.0), // Button border radius
                   side: BorderSide(color: Colors.green), // Border color

@@ -176,7 +176,7 @@ class _DoctorDetailsState extends State<DoctorDetails> {
                         }
                     },
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.green, // Set button color
+                      backgroundColor: Colors.green, // Set button color
                       padding: EdgeInsets.symmetric(
                           vertical: 16.0, horizontal: 32.0), // Set padding
                       shape: RoundedRectangleBorder(

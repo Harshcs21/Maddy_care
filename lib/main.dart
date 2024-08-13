@@ -1,4 +1,8 @@
+// import 'dart:js';
+
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_pro/newappointment.dart';
 import 'doctorinfo.dart';
 import 'forgotpassword.dart';
 import 'start.dart'; // Import the file where MyStart is defined
@@ -8,13 +12,11 @@ import 'register.dart';
 void main() async{
 
   WidgetsFlutterBinding.ensureInitialized();
-  // await Firebase.initializeApp(
-  //   options: DefaultFirebaseOptions.currentPlatform,
-  // );
+  await Firebase.initializeApp();
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
     theme: ThemeData.light(),
-    initialRoute: 'start',
+    initialRoute: 'newappointment',
     routes: {
       'start': (context) => const MyStart(), // Use MyStart here
       'login': (context) => MyLogin(),
@@ -24,6 +26,7 @@ void main() async{
       // 'dateandtime' : (context) => DateAndTime(),
       // 'auth' : (context) => AuthPage()
       // 'reg_doc_user' : (context) => RegDocUser(),
+      'newappointment': (context) => Newappointment(),
     },
   ));
 }
