@@ -203,7 +203,7 @@ class _MyDoctorState extends State<MyDoctor> {
                               );
                             },
                             style: ElevatedButton.styleFrom(
-                              primary: Colors.green,
+                              backgroundColor: Colors.green,
                             ),
                             child: Text(
                               'Done',
@@ -263,7 +263,7 @@ class _MyDoctorState extends State<MyDoctor> {
                               );
                             },
                             style: ElevatedButton.styleFrom(
-                              primary: Colors.red,
+                              backgroundColor: Colors.red,
                             ),
                             child: Text(
                               'Cancel',

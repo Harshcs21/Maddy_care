@@ -28,26 +28,26 @@ class _DoctorDetailsState extends State<DoctorDetails> {
 
   void openCheckout() async {
     var options = {
-      'key': 'rzp_test_1DP5mm0lF5G5ag',
-      'amount': 5000,
-      'name' : 'Med Care',
+      'key': 'rzp_test_fBcJ8o0j88nuUY',
+      'amount': 5000, // amount in paise (5000 paise = Rs 50)
+      'name': 'Med Care',
       'prefill': {
-        'contact' : '9429941467',
-        'email' : 'medCare@gmail.coom'
+        'contact': '9429941467',
+        'email': 'medCare@gmail.com'
       },
       'external': {
         'wallets': ['paytm']
       }
     };
 
-    try{
+    try {
       _razorpay.open(options);
-    }
-    catch(e)
-    {
-      debugPrint("Payment Failed! Please try again...");
+    } catch (e) {
+      debugPrint("Error: $e");
+      Fluttertoast.showToast(msg: "Error: $e");
     }
   }
+
 
   void handlePaymentSuccess(PaymentSuccessResponse response)
   {
@@ -72,8 +72,7 @@ class _DoctorDetailsState extends State<DoctorDetails> {
   }
 
   @override
-  void initstate()
-  {
+  void initState() {
     super.initState();
     _razorpay = Razorpay();
     _razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS, handlePaymentSuccess);
@@ -82,7 +81,8 @@ class _DoctorDetailsState extends State<DoctorDetails> {
   }
 
 
-    _DoctorDetailsState({
+
+  _DoctorDetailsState({
       required
       this.doctor_name,
       required
@@ -165,18 +165,18 @@ class _DoctorDetailsState extends State<DoctorDetails> {
                           phone: phone,
                           doctor_uid: doctor_uid!,);
 
-                      if(res == "Successfully appointment booked")
-                        {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => ConfirmAppointment(),
-                            ),
-                          );
-                        }
+                      // if(res == "Successfully appointment booked")
+                      //   {
+                      //     Navigator.push(
+                      //       context,
+                      //       MaterialPageRoute(
+                      //         builder: (context) => ConfirmAppointment(),
+                      //       ),
+                      //     );
+                      //   }
                     },
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.green, // Set button color
+                      backgroundColor: Colors.green, // Set button color
                       padding: EdgeInsets.symmetric(
                           vertical: 16.0, horizontal: 32.0), // Set padding
                       shape: RoundedRectangleBorder(

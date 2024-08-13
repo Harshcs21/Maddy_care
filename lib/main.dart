@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_pro/newappointment.dart';
 import 'doctorinfo.dart';
 import 'forgotpassword.dart';
 import 'start.dart'; // Import the file where MyStart is defined
@@ -14,7 +15,7 @@ void main() async{
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
     theme: ThemeData.light(),
-    initialRoute: 'start',
+    initialRoute: 'new_appointment',
     routes: {
       'start': (context) => const MyStart(), // Use MyStart here
       'login': (context) => MyLogin(),
@@ -24,6 +25,7 @@ void main() async{
       // 'dateandtime' : (context) => DateAndTime(),
       // 'auth' : (context) => AuthPage()
       // 'reg_doc_user' : (context) => RegDocUser(),
+      'new_appointment' : (context) => Newappointment()
     },
   ));
 }

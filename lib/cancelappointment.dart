@@ -38,7 +38,7 @@ class _CancelAppointmentState extends State<CancelAppointment> {
                 );
               },
               style: ElevatedButton.styleFrom(
-                primary: Colors.green, // Background color
+                backgroundColor: Colors.green, // Background color
               ),
               child: Text(
                 'Continue',
