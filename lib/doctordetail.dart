@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_pro/cancelappointment.dart';
 import 'package:flutter_pro/confirmappointment.dart';
 import 'package:flutter_pro/firebase_auth_service.dart';
 import 'package:flutter_pro/patientdetails.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-
-import 'doctor.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:razorpay_flutter/razorpay_flutter.dart';
 
 class DoctorDetails extends StatefulWidget {
 
@@ -26,11 +24,75 @@ class _DoctorDetailsState extends State<DoctorDetails> {
   String? doctor_uid;
   String? doctor_image;
 
+  late Razorpay _razorpay;
 
-  _DoctorDetailsState({required this.doctor_name, required this.doctor_image, required this.doctor_uid});
+  void openCheckout() async {
+    var options = {
+      'key': 'rzp_test_1DP5mm0lF5G5ag',
+      'amount': 5000,
+      'name' : 'Med Care',
+      'prefill': {
+        'contact' : '9429941467',
+        'email' : 'medCare@gmail.coom'
+      },
+      'external': {
+        'wallets': ['paytm']
+      }
+    };
+
+    try{
+      _razorpay.open(options);
+    }
+    catch(e)
+    {
+      debugPrint("Payment Failed! Please try again...");
+    }
+  }
+
+  void handlePaymentSuccess(PaymentSuccessResponse response)
+  {
+    Fluttertoast.showToast(msg: 'Payment Successful' + response.paymentId!, toastLength: Toast.LENGTH_SHORT);
+  }
+
+  void handlePaymentError(PaymentFailureResponse response)
+  {
+    Fluttertoast.showToast(msg: 'Payment Failed' + response.message!, toastLength: Toast.LENGTH_SHORT);
+  }
+
+  void handleExternalWallet(ExternalWalletResponse response)
+  {
+    Fluttertoast.showToast(msg: 'External wallet' + response.walletName!, toastLength: Toast.LENGTH_SHORT);
+  }
 
   @override
-  Widget build(BuildContext context) {
+  void dispose()
+  {
+    super.dispose();
+    _razorpay.clear();
+  }
+
+  @override
+  void initstate()
+  {
+    super.initState();
+    _razorpay = Razorpay();
+    _razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS, handlePaymentSuccess);
+    _razorpay.on(Razorpay.EVENT_PAYMENT_ERROR, handlePaymentError);
+    _razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET, handleExternalWallet);
+  }
+
+
+    _DoctorDetailsState({
+      required
+      this.doctor_name,
+      required
+      this.doctor_image,
+      required
+      this.doctor_uid
+    });
+
+    @override
+    Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -81,30 +143,6 @@ class _DoctorDetailsState extends State<DoctorDetails> {
                 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
                 style: TextStyle(fontSize: 16),
               ),
-              SizedBox(height: 20),
-              Text(
-                'Tips',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: 10),
-              Container(
-                padding: EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  color: Colors.grey,
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(40),
-                      bottomRight: Radius.circular(40)),
-                ),
-                child: Text(
-                  textAlign: TextAlign.center,
-                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. '
-                  'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. '
-                  'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-                  style: TextStyle(
-                    fontSize: 16,
-                  ),
-                ),
-              ),
               Spacer(),
               Align(
                 alignment: Alignment.bottomCenter,
@@ -112,6 +150,10 @@ class _DoctorDetailsState extends State<DoctorDetails> {
                   padding: const EdgeInsets.only(bottom: 20.0),
                   child: ElevatedButton(
                     onPressed: () async {
+
+                      setState(() {
+                        openCheckout();
+                      });
 
                       doctor = "Dr. Shailu";
 

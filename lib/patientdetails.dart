@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_pro/doctordetail.dart';
 import 'package:flutter_pro/dateandtime.dart';
-import 'package:flutter_pro/firebase_auth_service.dart';
-import 'doctor.dart';
 
 String name = "";
 String phone = "";

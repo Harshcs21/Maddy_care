@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_pro/userappointment.dart';
-import 'package:flutter_pro/userappointment.dart';
 
 class ConfirmAppointment extends StatefulWidget {
   const ConfirmAppointment({Key? key}) : super(key: key);

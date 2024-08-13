@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_pro/userappointment.dart';
-import 'package:flutter_pro/userappointment.dart';
 
 class CancelAppointment extends StatefulWidget {
   const CancelAppointment({Key? key}) : super(key: key);

@@ -5,6 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_pro/doctorinfo.dart';
 import 'package:flutter_pro/firebase_auth_service.dart';
 import 'package:flutter_pro/login.dart';
+import 'package:flutter_pro/reg_doc_user.dart';
+
+const List<String> specialization = <String>[
+  'ENT',
+  'Physician',
+  'Cardiologist',
+  'Orthologist'
+];
 
 class MyRegister extends StatefulWidget {
   const MyRegister({Key? key}) : super(key: key);
@@ -18,6 +26,8 @@ class _MyRegisterState extends State<MyRegister> {
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
   TextEditingController _confirmPasswordController = TextEditingController();
+
+  String dropdownValue = specialization.first;
 
   String _password = '';
   String _confirmPassword = '';
@@ -120,6 +130,36 @@ class _MyRegisterState extends State<MyRegister> {
                           ),
                         ),
                       ),
+                      global == 'Doctors'
+                          ? Column(
+                            children: [
+                              SizedBox(height: 20,),
+                              DropdownButtonFormField(
+                                decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10)
+                                  )
+                                ),
+                                value: dropdownValue,
+                                icon: Icon(Icons.arrow_downward),
+                                  isExpanded: true,
+                                  items: specialization
+                                      .map<DropdownMenuItem<String>>(
+                                          (String value) {
+                                    return DropdownMenuItem<String>(
+                                      value: value,
+                                      child: Text(value),
+                                    );
+                                  }).toList(),
+                                  onChanged: (String? value) {
+                                    setState(() {
+                                      dropdownValue = value!;
+                                    });
+                                  }),
+                            ],
+                          )
+                          : SizedBox(height: 0),
                       SizedBox(height: 30),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -141,9 +181,8 @@ class _MyRegisterState extends State<MyRegister> {
                                 var name = _nameController.text;
                                 var email = _emailController.text;
                                 var password = _passwordController.text;
-                                var confirmPassword =
-                                    _confirmPasswordController.text;
-
+                                var confirmPassword = _confirmPasswordController.text;
+                                var spec = dropdownValue;
                                 // Check if all fields are filled
                                 if (name.isEmpty ||
                                     email.isEmpty ||
@@ -151,7 +190,8 @@ class _MyRegisterState extends State<MyRegister> {
                                     confirmPassword.isEmpty) {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
-                                      content: Text('Please enter all the fields'),
+                                      content:
+                                          Text('Please enter all the fields'),
                                     ),
                                   );
                                   return;
@@ -163,7 +203,8 @@ class _MyRegisterState extends State<MyRegister> {
                                       email: email,
                                       username: name,
                                       password: password,
-                                      confirmPassword: confirmPassword);
+                                      confirmPassword: confirmPassword,
+                                      specialization: spec);
 
                                   print("The result is: " + res);
 

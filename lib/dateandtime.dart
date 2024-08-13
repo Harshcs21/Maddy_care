@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_pro/doctor.dart';
 import 'package:flutter_pro/doctordetail.dart';
 import 'patientdetails.dart';
-import 'doctor.dart';
 
 class DateAndTime extends StatefulWidget {
 
