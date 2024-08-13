@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_pro/doctor.dart';
 import 'package:flutter_pro/patientdetails.dart';// Import your patient details page file
 
 class Newappointment extends StatefulWidget {
@@ -56,6 +55,15 @@ class _NewappointmentState extends State<Newappointment> {
     "assets/skin.png",
   ];
 
+  final List<String> docTypes = [
+    "Orthologist",
+    "Dentist",
+    "ENT",
+    "Eyes",
+    "Physician",
+    "Skin"
+  ];
+
 
   @override
   Widget build(BuildContext context) {
@@ -83,11 +91,18 @@ class _NewappointmentState extends State<Newappointment> {
                   ));
 
                 },
-                child: Container(
-                  padding: EdgeInsets.all(30),
-                  child: CircleAvatar(
-                    backgroundImage: AssetImage(images[item]),
-                  ),
+                child: Column(
+
+                  children: [
+                    Container(
+                      padding: EdgeInsets.all(30),
+                      child: CircleAvatar(
+                        radius: 50,
+                        backgroundImage: AssetImage(images[item]),
+                      ),
+                    ),
+                    Text(docTypes[item]),
+                  ],
                 ),
               );
             }),

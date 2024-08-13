@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_pro/cancelappointment.dart';
 
 class DoctorBox extends StatelessWidget {
 

@@ -18,31 +18,61 @@ class AuthMethods {
     required String username,
     required String password,
     required String confirmPassword,
+    required String specialization,
   }) async {
     String res = "Some error occured";
 
-    try {
-      if (email.isNotEmpty || username.isNotEmpty || password.isNotEmpty || confirmPassword.isNotEmpty) {
-        // register user
-        UserCredential cred = await _auth.createUserWithEmailAndPassword(
-            email: email, password: password);
-        print(cred.user!.uid);
+    if(global == 'users')
+      {
+        try {
+          if (email.isNotEmpty || username.isNotEmpty || password.isNotEmpty || confirmPassword.isNotEmpty) {
+            // register user
+            UserCredential cred = await _auth.createUserWithEmailAndPassword(
+                email: email, password: password);
+            print(cred.user!.uid);
 
-        // add user to our databse
-        _firestore.collection(global).doc(cred.user!.uid).set({
-          'username': username,
-          'uid': cred.user!.uid,
-          'email': email,
-          'password': password,
-          'confirmPassword': confirmPassword
-        });
-        res = "Success";
+            // add user to our databse
+            _firestore.collection(global).doc(cred.user!.uid).set({
+              'username': username,
+              'uid': cred.user!.uid,
+              'email': email,
+              'password': password,
+              'confirmPassword': confirmPassword
+            });
+            res = "Success";
+          }
+        } catch (err) {
+          res = err.toString();
+        }
+
+        return res;
       }
-    } catch (err) {
-      res = err.toString();
-    }
+      else
+        {
+          try {
+            if (email.isNotEmpty || username.isNotEmpty || password.isNotEmpty || confirmPassword.isNotEmpty) {
+              // register user
+              UserCredential cred = await _auth.createUserWithEmailAndPassword(
+                  email: email, password: password);
+              print(cred.user!.uid);
 
-    return res;
+              // add user to our databse
+              _firestore.collection(global).doc('specializations').collection(specialization).doc(cred.user!.uid).set({
+                'username': username,
+                'uid': cred.user!.uid,
+                'email': email,
+                'password': password,
+                'confirmPassword': confirmPassword
+              });
+              res = "Success";
+            }
+          } catch (err) {
+            res = err.toString();
+          }
+
+          return res;
+        }
+
   }
   // Future <String> loginUser({
   //   required String email,
