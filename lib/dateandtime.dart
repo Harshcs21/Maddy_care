@@ -93,7 +93,7 @@ class _DateAndTimeState extends State<DateAndTime> {
               child: Text('Select Date',
                 style: TextStyle(color: Colors.white,)),
               style: ElevatedButton.styleFrom(
-                primary: Colors.green,
+                backgroundColor: Colors.green,
               ),
             ),
             SizedBox(height: 40),
@@ -118,7 +118,7 @@ class _DateAndTimeState extends State<DateAndTime> {
               style: TextStyle(color: Colors.white,)
               ),
               style: ElevatedButton.styleFrom(
-                primary: Colors.green,
+                backgroundColor: Colors.green,
               ),
             ),
             Spacer(), // Add spacer to push the continue button to the bottom
@@ -130,7 +130,7 @@ class _DateAndTimeState extends State<DateAndTime> {
                  _navigateToDoctorDetails(context, doctor_name, doctor_image, doctor_uid);
               },
               style: ElevatedButton.styleFrom(
-                primary: Colors.green,
+                backgroundColor: Colors.green,
                 padding: EdgeInsets.all(0), // Remove padding
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10.0),
