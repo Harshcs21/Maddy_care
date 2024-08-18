@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_pro/dateandtime.dart';
 
+import 'newappointment.dart';
+
 String name = "";
 String phone = "";
 String date = "";
@@ -10,28 +12,40 @@ String doctor = "";
 
 class PatientDetails extends StatefulWidget {
 
-  String? doctor_name;
-  String? doctor_uid;
-  String? doctor_image;
-
-  PatientDetails({Key? key, required this.doctor_name, required this.doctor_uid, required this.doctor_image}) : super(key: key);
+  const PatientDetails({super.key,});
 
   @override
-  State<PatientDetails> createState() => _PatientDetailsState(doctor_name: doctor_name, doctor_image: doctor_image, doctor_uid: doctor_uid);
+  State<PatientDetails> createState() => _PatientDetailsState();
 }
 
 class _PatientDetailsState extends State<PatientDetails> {
 
-  String? doctor_name;
-  String? doctor_uid;
-  String? doctor_image;
-
-  _PatientDetailsState({ required this.doctor_name, required this.doctor_uid, required this.doctor_image});
 
   TextEditingController _patientName = TextEditingController();
   TextEditingController _patientAge = TextEditingController();
   TextEditingController _mobile = TextEditingController();
   TextEditingController _diseaseSymptoms = TextEditingController();
+
+  bool isButtonEnabled = false;
+
+  @override
+  void initState() {
+    super.initState();
+
+    // Add listeners to controllers to check for changes
+    _patientName.addListener(_checkIfEmpty);
+    _patientAge.addListener(_checkIfEmpty);
+    _mobile.addListener(_checkIfEmpty);
+  }
+
+  void _checkIfEmpty() {
+    setState(() {
+      // Enable the button only if all text fields are non-empty
+      isButtonEnabled = _patientName.text.isNotEmpty &&
+          _patientAge.text.isNotEmpty &&
+          _mobile.text.isNotEmpty;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -162,26 +176,23 @@ class _PatientDetailsState extends State<PatientDetails> {
                   ),
                 ),
                 SizedBox(height: 20.0),
-                ElevatedButton(
-                  onPressed: () {
+                InkWell(
+                  onTap:isButtonEnabled ?() {
                     name = _patientName.text;
                     phone = _mobile.text;
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => DateAndTime(doctor_name: doctor_name, doctor_image: doctor_image, doctor_uid: doctor_uid),
+                        builder: (context) => Newappointment(patientName: _patientName.text, patientAge: _patientAge.text, patientMobile: _mobile.text),
                       ),
                     );
-                  },
-                  style: ElevatedButton.styleFrom(
-                    shadowColor: Colors.grey, // Add shadow color
-                  ),
+                  } : null ,
                   child: Container(
                     alignment: Alignment.center,
                     width: double.infinity,
                     height: 50.0,
                     decoration: BoxDecoration(
-                      color: Colors.green, // Set button color
+                      color: isButtonEnabled ?Colors.green :Colors.grey, // Set button color
                       borderRadius: BorderRadius.circular(10.0),
                     ),
                     child: Text(

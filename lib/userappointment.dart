@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_pro/newappointment.dart';
+import 'package:flutter_pro/patientdetails.dart';
 import 'login.dart';
 import 'myappointment.dart';
 import 'package:flutter/services.dart';
@@ -22,10 +22,6 @@ class _UserAppointmentState extends State<UserAppointment> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          // actions: [IconButton(onPressed: signUserOut, icon: Icon(Icons.logout))],
-          title: Text('           Home Page'),
-        ),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
           child: Column(
@@ -33,7 +29,7 @@ class _UserAppointmentState extends State<UserAppointment> {
               Container(
                 height: 400,
                 width: double.infinity,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                     image: DecorationImage(
                       image: AssetImage('assets/undraw_doctors_p6aq 1.png'),
                     )
@@ -44,11 +40,11 @@ class _UserAppointmentState extends State<UserAppointment> {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Newappointment()),
+                    MaterialPageRoute(builder: (context) => const PatientDetails()),
                   );
                 },
                 child: Container(
-                  padding: EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(10),
                   alignment: Alignment.center,
                   width: double.infinity,
                   decoration: BoxDecoration(

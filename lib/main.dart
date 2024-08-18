@@ -3,6 +3,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_pro/newappointment.dart';
+import 'package:flutter_pro/userappointment.dart';
 import 'doctorinfo.dart';
 import 'forgotpassword.dart';
 import 'start.dart'; // Import the file where MyStart is defined
@@ -16,7 +17,7 @@ void main() async{
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
     theme: ThemeData.light(),
-    initialRoute: 'newappointment',
+    initialRoute: 'userappointment',
     routes: {
       'start': (context) => const MyStart(), // Use MyStart here
       'login': (context) => MyLogin(),
@@ -26,9 +27,7 @@ void main() async{
       // 'dateandtime' : (context) => DateAndTime(),
       // 'auth' : (context) => AuthPage()
       // 'reg_doc_user' : (context) => RegDocUser(),
-
-      'newappointment': (context) => Newappointment(),
-
+      'userappointment': (context) => UserAppointment(),
     },
   ));
 }

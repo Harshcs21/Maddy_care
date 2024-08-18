@@ -3,7 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_pro/doctorlist.dart';
 
 class Newappointment extends StatefulWidget {
-  const Newappointment({Key? key}) : super(key: key);
+
+  final String patientName;
+  final String patientAge;
+  final String patientMobile;
+
+  const Newappointment({Key? key, required this.patientName, required this.patientAge, required this.patientMobile}) : super(key: key);
 
   @override
   State<Newappointment> createState() => _NewappointmentState();
@@ -53,7 +58,7 @@ class _NewappointmentState extends State<Newappointment> {
                   Navigator.push(
 
                       context,
-                      MaterialPageRoute(builder: (context) => DoctorList(spec: docTypes[item]),
+                      MaterialPageRoute(builder: (context) => DoctorList(spec: docTypes[item], patientName: widget.patientName, patientAge: widget.patientAge, patientMobile: widget.patientMobile),
                   ));
 
                 },

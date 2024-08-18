@@ -2,9 +2,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import 'doctordetail.dart';
+
 class DoctorList extends StatefulWidget {
   final String spec;
-  const DoctorList({super.key, required this.spec});
+  final String patientName;
+  final String patientAge;
+  final String patientMobile;
+  const DoctorList({super.key, required this.spec, required this.patientName, required this.patientAge, required this.patientMobile});
 
   @override
   State<DoctorList> createState() => _DoctorListState();
@@ -61,30 +66,39 @@ class _DoctorListState extends State<DoctorList> {
                     doctorname = doctorname.toLowerCase();
                     doctorname = doctorname.capitalize();
 
+                    String doctorUid = document.id;
 
-                    return Container(
-                      padding: EdgeInsets.all(20.0),
-                      margin:
-                          EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-                      decoration: BoxDecoration(
-                        color: Colors.blueGrey[50],
-                        border: Border.all(color: Colors.grey),
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          CircleAvatar(
-                            backgroundColor: Colors.green,
-                            child: Text(doctorname[0]),
-                          ),
-                          SizedBox(width: 20),
-                          Expanded(
-                              child: Text(doctorname,
-                                  style:
-                                      TextStyle(
-                                      fontSize: 20))),
-                        ],
+                    return InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => DoctorDetails(doctorSpec: widget.spec, doctorName: doctorname, doctorUid: doctorUid,  patientName: widget.patientName, patientAge: widget.patientAge, patientMobile: widget.patientMobile)),
+                        );
+                      },
+                      child: Container(
+                        padding: EdgeInsets.all(20.0),
+                        margin:
+                            EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+                        decoration: BoxDecoration(
+                          color: Colors.blueGrey[50],
+                          border: Border.all(color: Colors.grey),
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            CircleAvatar(
+                              backgroundColor: Colors.green,
+                              child: Text(doctorname[0]),
+                            ),
+                            SizedBox(width: 20),
+                            Expanded(
+                                child: Text(doctorname,
+                                    style:
+                                        TextStyle(
+                                        fontSize: 20))),
+                          ],
+                        ),
                       ),
                     );
                   }).toList(),

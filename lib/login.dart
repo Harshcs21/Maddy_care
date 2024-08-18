@@ -41,7 +41,7 @@ class _MyLoginState extends State<MyLogin> {
 
     String result = await AuthMethods().loginUser(email: email, password: password);
 
-    if(result == "user")
+    if(result == "User")
       {
         Navigator.pushReplacement(
                 context,
