@@ -101,8 +101,6 @@ class _DoctorDetailsState extends State<DoctorDetails> {
                           builder: (context) => DateAndTime(doctorSpec: widget.doctorSpec, doctorName: widget.doctorName, doctorUid: widget.doctorUid,  patientName: widget.patientName, patientAge: widget.patientAge, patientMobile: widget.patientMobile),
                         ),
                       );
-
-
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.green, // Set button color
