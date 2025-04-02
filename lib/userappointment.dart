@@ -51,7 +51,7 @@ class _UserAppointmentState extends State<UserAppointment> {
                     color: Colors.green,
                     borderRadius: BorderRadius.circular(20),
                   ),
-                  child: Text("New Appointment",
+                  child: Text("New appointment",
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
@@ -78,7 +78,7 @@ class _UserAppointmentState extends State<UserAppointment> {
                     color: Colors.green,
                     borderRadius: BorderRadius.circular(20),
                   ),
-                  child: Text("My Appointments",
+                  child: Text("My Appointment",
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,

@@ -41,18 +41,21 @@ class _MyLoginState extends State<MyLogin> {
 
     String result = await AuthMethods().loginUser(email: email, password: password);
 
-    if(result == "User")
+    if(result == "Docter")
       {
+        print("doctor");
         Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => UserAppointment()),
+                MaterialPageRoute(builder: (context) => MyDoctor()),
               );
       }
-    else if(result == "Doctor")
+    else if(result == "User")
     {
+      print("user");
       Navigator.pushReplacement(
+
         context,
-        MaterialPageRoute(builder: (context) => MyDoctor()),
+        MaterialPageRoute(builder: (context) => UserAppointment()),
       );
     }
     else

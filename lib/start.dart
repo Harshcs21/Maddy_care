@@ -3,6 +3,8 @@ import 'package:flutter_pro/auth.dart';
 import 'dart:async';
 import 'login.dart'; // Import the file where MyLogin is defined
 // import 'package:flutter_pro/auth.dart';
+import 'googleMaps.dart';
+import 'userappointment.dart';
 
 class MyStart extends StatefulWidget {
   const MyStart({Key? key}) : super(key: key);
@@ -20,7 +22,9 @@ class _MyStartState extends State<MyStart> {
       // Navigate to the login page after the delay
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => MyLogin()), // Use MyLogin here
+        MaterialPageRoute(builder: (context) => UserAppointment()),
+          // Use MyLogin here
+
       );
     });
   }

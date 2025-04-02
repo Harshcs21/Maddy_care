@@ -1,0 +1,2 @@
+D:/Maddy_care/android/app/.cxx/RelWithDebInfo/393d3s2z/arm64-v8a/CMakeFiles/edit_cache.dir
+D:/Maddy_care/android/app/.cxx/RelWithDebInfo/393d3s2z/arm64-v8a/CMakeFiles/rebuild_cache.dir

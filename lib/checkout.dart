@@ -3,6 +3,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 
 import 'confirmappointment.dart';
+import 'firebase_auth_service.dart';
 
 class Checkout extends StatefulWidget {
 
@@ -27,7 +28,7 @@ class _CheckoutState extends State<Checkout> {
 
   void openCheckout() async {
     var options = {
-      'key': 'rzp_test_1DP5mm0lF5G5ag',
+      'key': 'rzp_test_fBcJ8o0j88nuUY',
       'amount': 5000,
       'name' : 'Med Care',
       'prefill': {
@@ -52,15 +53,17 @@ class _CheckoutState extends State<Checkout> {
   Future<void> handlePaymentSuccess(PaymentSuccessResponse response)
   async {
 
-    // String res = await AuthMethods().addAppointment(
-    //   name: name,
-    //   date: date,
-    //   time: time,
-    //   doctor: widget.doctorName,
-    //   phone: phone,
-    //   doctor_uid: widget.doctorUid,);
+    String res = await AuthMethods().addAppointment(
+      doctorName: widget.doctorName,
+      doctorUid: widget.doctorUid ,
+      doctorSpec: widget.doctorSpec,
+      patientName: widget.patientName,
+      patientAge: widget.patientAge,
+      patientMobile:widget.patientMobile ,
+      date: widget.date,
+      shift: widget.shift ,);
 
-    // if(res == "Successfully appointment booked")
+    if(res == "Successfully appointment booked")
     {
       Navigator.push(
         context,

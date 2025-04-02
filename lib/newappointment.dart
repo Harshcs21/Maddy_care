@@ -18,21 +18,22 @@ class _NewappointmentState extends State<Newappointment> {
 
 
   final List<String> images = [
-    "assets/bone.png",
-    "assets/dentist.png",
+    "assets/heart.png",
+    "assets/skin.png",
+    "assets/diabetes.png",
     "assets/ent.png",
     "assets/eyes.png",
-    "assets/fever.png",
-    "assets/skin.png",
+    "assets/fever.png"
+    ,
   ];
 
   final List<String> docTypes = [
-    "Orthologist",
-    "Dentist",
-    "ENT",
+    "Heart",
+    "Skin",
+    "Diabetes",
+    "Parkinson",
     "Eyes",
-    "Physician",
-    "Skin"
+    "Physician"
   ];
 
 

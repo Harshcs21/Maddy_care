@@ -77,29 +77,6 @@ class AuthMethods {
       return res;
     }
   }
-
-  // Future <String> loginUser({
-  //   required String email,
-  //   required String password,
-  // }) async {
-  //   String result = "Some error occured";
-  //
-  //   try {
-  //     if (email.isNotEmpty || password.isNotEmpty) {
-  //       UserCredential user = await _auth.signInWithEmailAndPassword(
-  //           email: email, password: password);
-  //       result = "Success";
-  //     }
-  //     else {
-  //       result = "please enter all the fields";
-  //     }
-  //   } catch (err) {
-  //     result = err.toString();
-  //   }
-  //
-  //   return result;
-  // }
-// }
   Future<String> loginUser({
     required String email,
     required String password,
@@ -126,24 +103,18 @@ class AuthMethods {
               .doc(userCredential.user!.uid)
               .get();
 
-          if(doctorSnapshot.exists)
+          if(doctorSnapshot.exists) {
+            // print(result);
             result = "Doctor";
-          break;
+            break;
+          }
         }
 
         if(!(result == "Doctor"))
           {
+            // print(result);
             result = "User";
           }
-
-        // // DocumentSnapshot doctorSnapshot = await _firestore.collection('Doctors').doc(userCredential.user!.uid).get();
-        // if (doctorSnapshot.exists) {
-        //   // Navigate to doctor's page
-        //   result = "Doctor";
-        // } else {
-        //   // Navigate to patient's page
-        //   result = "user";
-        // }
       } else {
         result = "Please enter all the fields";
       }
@@ -155,22 +126,26 @@ class AuthMethods {
   }
 
   Future<String> addAppointment({
-    required String name,
+
+    required String doctorName,
+    required String doctorUid,
+    required String doctorSpec,
+    required String patientName,
+    required String patientAge,
+    required String patientMobile,
     required String date,
-    required String time,
-    required String doctor,
-    required String phone,
-    required String doctor_uid,
+    required String shift,
+
   }) async {
     String result = "Some error occured";
 
     try {
-      if (name.isNotEmpty &&
-          phone.isNotEmpty &&
-          doctor.isNotEmpty &&
+      if (patientName.isNotEmpty &&
+          patientMobile.isNotEmpty &&
+          doctorName.isNotEmpty &&
           date.isNotEmpty &&
-          time.isNotEmpty &&
-          doctor_uid.isNotEmpty) {
+          shift.isNotEmpty &&
+          doctorUid.isNotEmpty) {
         var uuid = Uuid().v4();
         var uuid2 = Uuid().v4();
 
@@ -181,27 +156,30 @@ class AuthMethods {
             .doc(uuid)
             .set({
           'id': uuid,
-          'patient name': name,
+          'patient name': patientName,
           'date': date,
-          'doctor': doctor,
-          'phone': phone,
-          'time': time,
-          'doc_uid': doctor_uid,
+          'doctor': doctorName,
+          'phone': patientMobile,
+          'time': shift,
+          'doc_uid': doctorUid,
+          'doc_spec': doctorSpec,
           'doc_appointment_id': uuid2,
         });
 
         await _firestore
             .collection('Doctors')
-            .doc(doctor_uid)
-            .collection('myAppointments')
+            .doc("specializations")
+            .collection(doctorSpec)
+            .doc(doctorUid)
+            .collection("myAppointments")
             .doc(uuid2)
             .set({
           'id': uuid2,
-          'patient name': name,
+          'patient name': patientName,
           'date': date,
           // 'doctor': doctor,
-          'phone': phone,
-          'time': time,
+          'phone': patientMobile,
+          'time': shift,
           'pat_uid': _auth.currentUser!.uid,
           'pat_appointment_id': uuid,
         });
@@ -214,13 +192,46 @@ class AuthMethods {
 
     return result;
   }
-  //
-  // Future <List> getUserAppointments() async
-  // {
-  //   QuerySnapshot querySnapshot = await _firestore.collection('users').doc(_auth.currentUser!.uid).collection('myAppointments').get();
-  //
-  //   final data = querySnapshot.docs.map((doc) => doc.data()).toList();
-  //
-  //   return data;
-  // }
+
+ Future <String> appointmentDelete({
+
+
+   required String doctorUid,
+   required String doctorSpec,
+   required String doctorAppointmentId,
+   required String patientUid,
+   required String patientAppointmentId,
+}) async
+  {
+    String result = "Error";
+
+    try{
+    //   user delete
+
+      await _firestore
+          .collection("users")
+          .doc(patientUid)
+          .collection("myAppointments")
+          .doc(patientAppointmentId)
+          .delete();
+
+    //   doctor delete
+
+      await _firestore
+          .collection("Doctors")
+          .doc("specializations")
+          .collection(doctorSpec)
+          .doc(doctorUid)
+          .collection("myAppointments")
+          .doc(doctorAppointmentId)
+          .delete();
+
+      result = "Successful";
+    }
+    catch (e){
+      print(e);
+    }
+
+    return result;
+  }
 }

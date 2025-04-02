@@ -17,7 +17,7 @@ void main() async{
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
     theme: ThemeData.light(),
-    initialRoute: 'userappointment',
+    initialRoute: 'start',
     routes: {
       'start': (context) => const MyStart(), // Use MyStart here
       'login': (context) => MyLogin(),
