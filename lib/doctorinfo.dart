@@ -96,25 +96,25 @@ class _MyDoctorState extends State<MyDoctor> {
                       //     }
                       // )
                     child: StreamBuilder(
-                  stream: _firestore
-                      .collection('Doctors')
-                      .doc(_auth.currentUser!.uid)
-                      .collection('myAppointments')
-                      .snapshots(),
-          builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return Center(
-                child: CircularProgressIndicator(),
-              );
-            } else if (snapshot.hasError) {
-              return Center(
-                child: Text('Error: ${snapshot.error}'),
-              );
-            } else if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-              return Center(
-                child: Text('No appointments found.'),
-              );
-            }
+                                    stream: _firestore
+                                        .collection('Doctors')
+                                        .doc(_auth.currentUser!.uid)
+                                        .collection('myAppointments')
+                                        .snapshots(),
+                            builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                              if (snapshot.connectionState == ConnectionState.waiting) {
+                                return Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                              } else if (snapshot.hasError) {
+                                return Center(
+                                  child: Text('Error: ${snapshot.error}'),
+                                );
+                              } else if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+                                return Center(
+                                  child: Text('No appointments found.'),
+                                );
+                              }
 
             return ListView(
               children: snapshot.data!.docs.map((DocumentSnapshot document) {

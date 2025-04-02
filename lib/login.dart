@@ -43,7 +43,6 @@ class _MyLoginState extends State<MyLogin> {
 
     if(result == "Docter")
       {
-        print("doctor");
         Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(builder: (context) => MyDoctor()),
@@ -51,7 +50,6 @@ class _MyLoginState extends State<MyLogin> {
       }
     else if(result == "User")
     {
-      print("user");
       Navigator.pushReplacement(
 
         context,

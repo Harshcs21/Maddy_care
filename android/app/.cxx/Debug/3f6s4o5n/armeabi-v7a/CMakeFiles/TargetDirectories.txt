@@ -1,0 +1,2 @@
+D:/Maddy_care/android/app/.cxx/Debug/3f6s4o5n/armeabi-v7a/CMakeFiles/edit_cache.dir
+D:/Maddy_care/android/app/.cxx/Debug/3f6s4o5n/armeabi-v7a/CMakeFiles/rebuild_cache.dir

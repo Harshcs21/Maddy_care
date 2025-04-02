@@ -104,7 +104,7 @@ class AuthMethods {
               .get();
 
           if(doctorSnapshot.exists) {
-            // print(result);
+            print(result);
             result = "Doctor";
             break;
           }
@@ -112,7 +112,7 @@ class AuthMethods {
 
         if(!(result == "Doctor"))
           {
-            // print(result);
+            print(result);
             result = "User";
           }
       } else {
